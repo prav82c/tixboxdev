@@ -1,0 +1,264 @@
+html, body {
+	background:#111;
+	position:relative;
+	height:100%;
+	color:#fff;
+	font-weight:normal;
+}
+
+a {
+color: #C13B39;
+text-decoration: none;
+}
+
+ul {
+	padding-left:20px;
+}
+
+ul li {
+	list-style:disc;
+	
+}
+
+h1.title {
+	text-transform:uppercase;
+	font-weight:bold;
+	padding-left:10px;
+}
+
+.home_eventTitle {
+	font-family: 'Oswald',sans-serif;
+	font-size:16px;
+	font-weight:bold;
+	color:#fff;
+}
+
+.eventTitle {
+	font-family: 'Oswald',sans-serif;
+	font-size:24px;
+	font-weight:bold;
+	color:#fff;
+	text-transform:uppercase;
+}
+
+.tprice {
+	font-size:24px;
+	color:#fff;
+}
+
+.eveListItem {
+	background:#1a1a1a;
+	margin-bottom:10px;
+	-webkit-box-shadow: 0px 3px 0px 0px rgba(0,0,0,0.75);
+	-moz-box-shadow: 0px 3px 0px 0px rgba(0,0,0,0.75);
+	box-shadow: 0px 3px 0px 0px rgba(0,0,0,0.75);
+	/*  border-radius: 5px 5px 5px 5px;
+	-moz-border-radius: 5px 5px 5px 5px;
+	-webkit-border-radius: 5px 5px 5px 5px; */
+	margin:0px; 
+}
+.eveListItem:last-child {
+	margin-bottom:0px;
+}
+
+.eveDets {
+	color:#777;
+}
+
+.eveImage img{
+width: 100%;
+vertical-align: middle;
+ /* border-radius: 5px 5px 0px 0px;
+-moz-border-radius: 5px 5px 0px 0px;
+-webkit-border-radius: 5px 5px 0px 0px;  */
+}
+
+.detTabHeadhold {
+width: 100%;
+position: relative;
+margin-bottom: 30px;
+}
+.detTabHead_new {
+border-bottom-width: 2px;
+border-bottom-style: solid;
+border-bottom-color: #C13B39;
+font-size: 20px;
+text-transform: uppercase;
+margin-bottom: 20px;
+color: #fff; 
+display: inline;
+padding-bottom: 6px;
+margin-bottom: 0px;
+margin-top: 0;
+}
+.tinys_wrapper {
+border-bottom: 2px solid #1a1a1a;
+margin-top: 7px;
+width: 100%;
+z-index: -1;
+}
+
+hr {
+margin-top: 20px;
+margin-bottom: 20px;
+border: 0;
+border-top: 1px solid #1a1a1a;
+box-shadow: 0 -1px 0px rgba(0,0,0,0.4);
+}
+
+hr.light {
+border-top: 1px solid #222;
+}
+
+.list a.item:after{
+-webkit-font-smoothing: antialiased;
+font-smoothing: antialiased;
+position: absolute;
+top: 50%;
+right: 11px;
+display: block;
+margin-top: -8px;
+color: #ccc;
+content: "\f125";
+text-transform: none;
+font-weight: normal;
+font-style: normal;
+font-variant: normal;
+font-size: 16px;
+font-family: 'Ionicons';
+line-height: 1;
+speak: none;
+}
+
+.button.button-assertive, .tabs.tabs-assertive, .bar.bar-assertive {
+border-color: #C13B39;
+background-color: #C13B39;
+color: #fff;
+}
+.bar-assertive .button {
+border-color: #C13B39;
+background-color: #C13B39;
+color: #fff;
+}
+
+.text-center {
+	text-align:center;
+}
+
+.mttty {
+	margin-top:20px;
+}
+
+.mbtty {
+	margin-bottom:20px;
+}
+
+.mltty {
+	margin-left:20px;
+}
+
+.mrtty {
+	margin-right:20px;
+}
+
+.mtthy {
+	margin-top:30px;
+}
+
+.mbthy {
+	margin-bottom:30px;
+}
+
+.mlthy {
+	margin-left:30px;
+}
+
+.mrthy {
+	margin-right:30px;
+}
+
+.padten {
+	padding:10px;
+}
+.padtty {
+	padding:20px;
+}
+.padthy {
+	padding:30px;
+}
+
+.splashbox {
+	position:relative;
+	height:100%;
+}
+
+.splashimg {
+	position:absolute; top:50%; left:50%; width:220px; height:74px; margin-left:-110px; margin-top:-37px; 
+}
+.logo {
+	margin-top:30px;
+}
+
+
+ion-content {
+	background:#111;
+}
+
+.actnbtns {
+	padding:0 20%;
+}
+
+.item {
+color:#777;
+border-color: #222;
+background-color: #1a1a1a;
+}
+
+.item h2{
+	color:#fff;
+	font-weight:normal;
+}
+
+.card, .list-inset {
+background-color: #111;
+}
+
+.item-divider {
+background-color: #C13B39;
+color: #fff;
+}
+
+.item.activated {
+	background-color: #222;
+	border-color:#222;
+}
+
+.button.button-dark {
+border-color: #111;
+background-color: #111;
+color: #fff;
+}
+
+.button.button-dark:active {
+	background-color: #1a1a1a;
+}
+
+.bar.bar-dark {
+border-color: #000;
+background-color: #000;
+}
+
+textarea, input[type="text"], input[type="password"], input[type="datetime"], input[type="datetime-local"], input[type="date"], input[type="month"], input[type="time"], input[type="week"], input[type="number"], input[type="email"], input[type="url"], input[type="search"], input[type="tel"], input[type="color"] {
+color: #ddd;
+}
+
+.button.button-assertive.active, .button.button-assertive.activated {
+border-color: #d74b49;
+background-color: #d74b49;
+}
+
+
+/* eventpage str */
+.eventpage img.eveimg{
+	width:100%;
+}
