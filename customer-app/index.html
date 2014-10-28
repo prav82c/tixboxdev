@@ -93,21 +93,17 @@
 	<ion-view title="EventPage">
 		<ion-content>
 		<div class="eventpage">
-		<ion-slide-box on-slide-changed="slideHasChanged($index)">
-			  <ion-slide>
-				<div class="box"><img src="lib/ionic/img/1.jpg" class="eveimg"></div>
+		<ion-slide-box on-slide-changed="slideHasChanged($index)" nf-if="image.large">
+			  
+			  <ion-slide ng-repeat="image in image.large">
+				<div class="box"><img src="{{image}}" class="eveimg"></div>
 			  </ion-slide>
-			  <ion-slide>
-				<div class="box"><img src="lib/ionic/img/2.jpg" class="eveimg"></div>
-			  </ion-slide>
-			  <ion-slide>
-				<div class="box"><img src="lib/ionic/img/3.jpg" class="eveimg"></div>
-			  </ion-slide>
-			</ion-slide-box>
+			  
+		</ion-slide-box>
 		
 	    <div class="evedets padtty clearfix">
-			<h1 class="eventTitle">Wake Park World Championship Final 2014 Abudhabi</h1>
-			<p>The Wake Park World Finals will take place for the 4th year in raw at Al Forsan International Sports Resort marking its continuous success and welcoming a remarkable number of riders and spectators This year, we will celebrate our champions awards with an excusive Party at the water cable park hosted by celebrity resident DJs:  Paul HamilonGreg Stainer and Mike Bufton</p>
+			<h1 class="eventTitle">{{data.event.title}}</h1>
+			<p ng-bind-html="data.event.description"></p>
 			<hr class="light">
 			<div>
 			<div class="detTabHeadhold">
@@ -116,7 +112,7 @@
 				</div>
 			<p><i class="icon ion-calendar"></i> <span>Nov 7, 2014, Friday</span></p>
 			<p><i class="icon ion-clock"></i> <span>7:00 PM-1:00 AM</span></p>
-			<p><i class="icon ion-ios7-location"></i> <span>Al Forsan Sport Resort, Dubai</span></p>
+			<p><i class="icon ion-ios7-location"></i> <span>{{data.event.title}}</span></p>
 			<p><i class="icon ion-star"></i> <span>Concert (+5)</span></p>
 			<div>
 			<a href="#/events/1/t_eveDetails" class="button icon-right ion-chevron-right button-outline button-block button-stable">

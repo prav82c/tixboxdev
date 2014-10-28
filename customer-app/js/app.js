@@ -27,7 +27,7 @@ app.config(function($stateProvider, $urlRouterProvider) {
 	$stateProvider.state('events-page', {
         url: '/events/:event_id',
         templateUrl: 'event-page.html',
-        controller: 'EventController'
+        controller: 'EventPageController'
     });
 	
 	$stateProvider.state('events-page-details', {
@@ -135,6 +135,61 @@ app.controller('EventController', function($scope, $state, $http, $ionicPopup, $
 		$ionicLoading.hide();
 		$scope.events = data.events;			
 		console.log($scope.events);
+		
+	}).error(function(data, status, header, config) {
+		$ionicLoading.hide();
+		var alertPopup = $ionicPopup.alert({
+			title: 'Network Error',
+			template: 'Please check data connection'
+		});
+	});
+		
+		
+	
+    $scope.goBack = function() {
+        $state.go('events');
+    };
+	
+	
+	
+});
+
+app.controller('EventPageController', function($scope, $state, $http, $ionicPopup, $rootScope, $ionicViewService, $ionicNavBarDelegate,$ionicLoading,$stateParams) {
+
+	$scope.data = {};
+	$scope.image = {};
+	
+	$ionicLoading.show({
+		template: '<i class="icon ion-loading-c"></i>'
+	});
+
+	$scope.event_id = $stateParams.event_id;
+	
+	$http({
+		method: 'jsonp',
+		url: basepath + 'appevent/'+$scope.event_id+'?callback=JSON_CALLBACK',
+		params: {
+			"event": "list"			
+		}
+	}).success(function(data, status, header, config) {
+		
+		$ionicLoading.hide();
+		$scope.data = data;
+		//console.log($scope.data);
+		$scope.image = angular.fromJson($scope.data.event.image);
+		
+		$scope.image.medium = [];
+		$scope.image.large = [];
+		$scope.image.small = [];
+		
+		angular.forEach($scope.image, function(value, key) {
+			
+			if(value.mode == "medium") $scope.image.medium.push(value.url);
+			else if(value.mode == "large") $scope.image.large.push(value.url);
+			else if(value.mode == "small") $scope.image.small.push(value.url);
+			
+		});
+		
 		
 	}).error(function(data, status, header, config) {
 		$ionicLoading.hide();
