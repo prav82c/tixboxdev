@@ -116,9 +116,9 @@ app.controller('LoginController', function($scope, $state, $http, $ionicPopup, $
 });
 
 
-app.controller('EventController', function($scope, $state, $http, $ionicPopup, $rootScope, $ionicViewService, $ionicNavBarDelegate) {
+app.controller('EventController', function($scope, $state, $http, $ionicPopup, $rootScope, $ionicViewService, $ionicNavBarDelegate,$ionicLoading) {
 
-	$scope.results = {};
+	$scope.events = {};
 	$ionicLoading.show({
 		template: '<i class="icon ion-loading-c"></i>'
 	});
@@ -126,15 +126,15 @@ app.controller('EventController', function($scope, $state, $http, $ionicPopup, $
 	
 	$http({
 		method: 'jsonp',
-		url: basepath + 'get/categories?callback=JSON_CALLBACK',
+		url: basepath + 'appevents?callback=JSON_CALLBACK',
 		params: {
-			"lang": lang,
-			"args[parent]": "0"
+			"event": "list"			
 		}
 	}).success(function(data, status, header, config) {
 		
 		$ionicLoading.hide();
-		$scope.results = data.results;			
+		$scope.events = data.events;			
+		console.log($scope.events);
 		
 	}).error(function(data, status, header, config) {
 		$ionicLoading.hide();
