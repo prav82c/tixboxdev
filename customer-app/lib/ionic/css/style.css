@@ -1,7 +1,7 @@
 html, body {
 	background:#111;
-	position:relative;
-	height:100%;
+	/* position:relative;
+	height:100%; */
 	color:#fff;
 	font-weight:normal;
 }
@@ -110,26 +110,6 @@ hr.light {
 border-top: 1px solid #222;
 }
 
-.list a.item:after{
--webkit-font-smoothing: antialiased;
-font-smoothing: antialiased;
-position: absolute;
-top: 50%;
-right: 11px;
-display: block;
-margin-top: -8px;
-color: #ccc;
-content: "\f125";
-text-transform: none;
-font-weight: normal;
-font-style: normal;
-font-variant: normal;
-font-size: 16px;
-font-family: 'Ionicons';
-line-height: 1;
-speak: none;
-}
-
 .button.button-assertive, .tabs.tabs-assertive, .bar.bar-assertive {
 border-color: #C13B39;
 background-color: #C13B39;
@@ -143,6 +123,14 @@ color: #fff;
 
 .text-center {
 	text-align:center;
+}
+
+.mtten {
+	margin-top:10px;
+}
+
+.mbten {
+	margin-bottom:10px;
 }
 
 .mttty {
@@ -188,24 +176,30 @@ color: #fff;
 }
 
 .splashbox {
-	position:relative;
-	height:100%;
+	background:#fff;
 }
 
-.splashimg {
+.splashimg{
 	position:absolute; top:50%; left:50%; width:220px; height:74px; margin-left:-110px; margin-top:-37px; 
 }
-.logo {
-	margin-top:30px;
+
+.well-bg {
+	background:#222;
+	padding:20px;
 }
 
+.well-wbg {
+	padding:20px;
+}
 
 ion-content {
 	background:#111;
 }
 
-.actnbtns {
-	padding:0 20%;
+.button-facebook, .button-facebook:hover {
+color: #fff;
+background-color: #3b5998;
+border-color: rgba(0,0,0,0.2);
 }
 
 .item {
@@ -262,3 +256,30 @@ background-color: #d74b49;
 .eventpage img.eveimg{
 	width:100%;
 }
+
+.item-input-wrapper {
+	background: none;
+}
+
+.selectstyle .input-label {
+	color: #aaa;
+font-size: 14px;
+}
+.selectstyle select {
+	width:100%;
+	padding:5px;
+}
+.checkbox-assertive input:before, .checkbox-assertive .checkbox-icon:before {
+  border-color: #C13B39; }
+.checkbox-assertive input:checked:before, .checkbox-assertive input:checked + .checkbox-icon:before {
+  background: #C13B39; }
+  
+  .bigico.success {
+	  font-size:180px;
+	  color:green;
+  }
+  
+  .bigico.fail {
+	  font-size:180px;
+	  color:red;
+  }

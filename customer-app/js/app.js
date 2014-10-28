@@ -95,9 +95,17 @@ app.controller('AppController', function($scope, $state, $http, $ionicPopup, $ro
 });
 
 app.controller('SplashController', function($scope, $state, $http, $ionicPopup, $rootScope, $ionicViewService, $ionicNavBarDelegate) {
-    $scope.goBack = function() {
+    
+	
+	setTimeout(function(){
+		$state.go('events');
+	}, 3000);
+	
+	
+	$scope.goBack = function() {
         $state.go('events');
     };
+	
 });
 
 
@@ -109,9 +117,41 @@ app.controller('LoginController', function($scope, $state, $http, $ionicPopup, $
 
 
 app.controller('EventController', function($scope, $state, $http, $ionicPopup, $rootScope, $ionicViewService, $ionicNavBarDelegate) {
+
+	$scope.results = {};
+	$ionicLoading.show({
+		template: '<i class="icon ion-loading-c"></i>'
+	});
+
+	
+	$http({
+		method: 'jsonp',
+		url: basepath + 'get/categories?callback=JSON_CALLBACK',
+		params: {
+			"lang": lang,
+			"args[parent]": "0"
+		}
+	}).success(function(data, status, header, config) {
+		
+		$ionicLoading.hide();
+		$scope.results = data.results;			
+		
+	}).error(function(data, status, header, config) {
+		$ionicLoading.hide();
+		var alertPopup = $ionicPopup.alert({
+			title: 'Network Error',
+			template: 'Please check data connection'
+		});
+	});
+		
+		
+	
     $scope.goBack = function() {
         $state.go('events');
     };
+	
+	
+	
 });
 
 
