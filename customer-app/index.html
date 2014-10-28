@@ -110,10 +110,9 @@
 				<h2 class="detTabHead_new">Event Details</h2>
 				<div class="tinys_wrapper"></div>
 				</div>
-			<p><i class="icon ion-calendar"></i> <span>Nov 7, 2014, Friday</span></p>
-			<p><i class="icon ion-clock"></i> <span>7:00 PM-1:00 AM</span></p>
-			<p><i class="icon ion-ios7-location"></i> <span>{{data.event.title}}</span></p>
-			<p><i class="icon ion-star"></i> <span>Concert (+5)</span></p>
+			<p><i class="icon ion-calendar"></i> <span>{{data.event.start_date}}</span></p>
+			<p><i class="icon ion-ios7-location"></i> <span>{{data.event.event_address.address}}</span></p>
+			<p><i class="icon ion-star"></i> <span>{{data.event.event_address.city_id}}</span></p>
 			<div>
 			<a href="#/events/1/t_eveDetails" class="button icon-right ion-chevron-right button-outline button-block button-stable">
 			  See More Details
