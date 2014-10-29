@@ -90,7 +90,9 @@ app.config(function($stateProvider, $urlRouterProvider) {
 
 app.controller('AppController', function($rootScope, $scope, $state, $http, $ionicPopup, $rootScope, $ionicViewService, $ionicNavBarDelegate) {
 
+	
 
+  
     $scope.goBack = function() {
         $state.go('events');
     };
@@ -121,7 +123,7 @@ app.controller('LoginController', function($scope,$rootScope, $state, $http, $io
 });
 
 
-app.controller('EventController', function($scope,$rootScope, $state, $http, $ionicPopup, $rootScope, $ionicViewService, $ionicNavBarDelegate,$ionicLoading) {
+app.controller('EventController', function($scope,$rootScope, $state, $http, $ionicPopup, $rootScope, $ionicViewService, $ionicNavBarDelegate,$ionicLoading,$ionicSideMenuDelegate) {
 
 
 	
@@ -162,7 +164,9 @@ app.controller('EventController', function($scope,$rootScope, $state, $http, $io
         $state.go('events');
     };
 	
-	
+	$scope.showCategory = function() {
+		$ionicSideMenuDelegate.toggleLeft();
+	};
 	
 });
 

@@ -14,12 +14,15 @@
 <script src="lib/ionic/js/underscore.js"></script>
 </head>
 <body ng-controller="AppController">
-<ion-nav-bar></ion-nav-bar>
-<ion-nav-view animation="none">
-  <ion-view title="My Page">
-    <ion-content> </ion-content>
-  </ion-view>
-</ion-nav-view>
+
+<ion-side-menu-content>
+	<ion-nav-bar></ion-nav-bar>
+	<ion-nav-view animation="none">
+	  <ion-view title="My Page">
+		<ion-content> </ion-content>
+	  </ion-view>
+	</ion-nav-view>
+</ion-side-menu-content>
 <script id="splash.html" type="text/ng-template">
 	<ion-nav-bar></ion-nav-bar>
 	<ion-content style="background-position: 50% 50%;; background-image: url('lib/ionic/img/logo.png'); background-repeat: no-repeat;">
@@ -46,18 +49,24 @@
 </script> 
 
 <script id="events.html" type="text/ng-template">
-<ion-header-bar align-title="left" class="bar-assertive">
-  <div class="buttons">
-    <button class="button button-icon icon ion-ios7-arrow-back"></button>
-	<img src="lib/ionic/img/logo_tb_small.png" alt="tixbox.com">
-  </div>
-  <h1 class="title title-left">Events</h1>
-  <div class="buttons">
-    <button class="button button-icon icon ion-ios7-cart"></button>
-    <button class="button button-icon icon ion-ios7-gear"></button>
-	<button class="button button-icon icon ion-ios7-person"></button>
-  </div>
-</ion-header-bar>
+<ion-side-menus>
+	
+	
+	<ion-side-menu-content>
+	
+	<ion-header-bar align-title="left" class="bar-assertive">
+	  <div class="buttons">
+		<button class="button button-icon icon ion-navicon" ng-click="showCategory()"></button>
+		<img src="lib/ionic/img/logo_tb_small.png" alt="tixbox.com">
+	  </div>
+	  <h1 class="title title-left">Events</h1>
+	  <div class="buttons">
+		<button class="button button-icon icon ion-ios7-cart"></button>
+		<button class="button button-icon icon ion-ios7-gear"></button>
+		<button class="button button-icon icon ion-ios7-person"></button>
+	  </div>
+	</ion-header-bar>
+	
 	<ion-view title="Event">
 		<ion-content class="praveen">
 		
@@ -74,12 +83,29 @@
 				
 		</ion-content>          
 	</ion-view>
+	</ion-side-menu-content>
+	
+	
+	<ion-side-menu side="left">
+		<ion-header-bar><h1 class="title">Categories</h1></ion-header-bar>
+		
+		<ion-content>
+			<ion-list>
+				<ion-item>Arts & Theater</ion-item>
+				<ion-item>Family</ion-item>
+				<ion-item>Sports</ion-item>
+				<ion-item>Night Club</ion-item>
+			</ion-list>
+		</ion-content>
+	</ion-side-menu>
+
+</ion-side-menus>	
 </script> 
 
 <script id="event-page.html" type="text/ng-template">
 <ion-header-bar align-title="left" class="bar-assertive">
   <div class="buttons">
-    <button class="button button-icon icon ion-navicon"></button>
+    <button class="button button-icon icon ion-ios7-arrow-back" ng-click="goBack()"></button>
 	<img src="lib/ionic/img/logo_tb_small.png" alt="tixbox.com">
   </div>
   <h1 class="title title-left"></h1>
@@ -195,7 +221,7 @@
 <script id="event-page-details.html" type="text/ng-template">
 <ion-header-bar align-title="left" class="bar-assertive">
   <div class="buttons">
-    <button class="button button-icon icon ion-chevron-left" ng-click="goBack()"></button>
+    <button class="button button-icon icon ion-ios7-arrow-back" ng-click="goBack()"></button>
 	<img src="lib/ionic/img/logo_tb_small.png" alt="tixbox.com">
   </div>
   <h1 class="title title-left"></h1>
