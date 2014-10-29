@@ -102,7 +102,7 @@
 		
 	    <div class="evedets padtty clearfix">
 			<h1 class="eventTitle">{{data.event.title}}</h1>
-			<p ng-bind-html="data.event.description"></p>
+			<p ng-bind-html="data.event.short_description"></p>
 			<hr class="light">
 			<div>
 			<div class="detTabHeadhold">
@@ -113,7 +113,7 @@
 			<p><i class="icon ion-ios7-location"></i> <span>{{data.event.event_address.address}}</span></p>
 			<p><i class="icon ion-star"></i> <span>{{data.event.event_address.city_id}}</span></p>
 			<div>
-			<a href="#/events/1/t_eveDetails" class="button icon-right ion-chevron-right button-outline button-block button-stable">
+			<a href="#/events/{{data.event.event_id}}/details" class="button icon-right ion-chevron-right button-outline button-block button-stable">
 			  See More Details
 			</a>
 			</div>
@@ -187,10 +187,15 @@
 		</ion-content>          
 	</ion-view>
 </script>
+
+
+
+
+
 <script id="event-page-details.html" type="text/ng-template">
 <ion-header-bar align-title="left" class="bar-assertive">
   <div class="buttons">
-    <button class="button button-icon icon ion-navicon"></button>
+    <button class="button button-icon icon ion-chevron-left" ng-click="goBack()"></button>
 	<img src="lib/ionic/img/logo_tb_small.png" alt="tixbox.com">
   </div>
   <h1 class="title title-left"></h1>
@@ -208,13 +213,9 @@
 <div class="tinys_wrapper"></div>
 </div>
 
-<div>
-<p>Lorem ipsum dolor sit amet, <a href="#">consectetur adipiscing</a> elit. Integer laoreet odio at nisi varius varius. Suspendisse laoreet diam vel est tempus scelerisque. Aenean interdum fringilla urna. Quisque porttitor, nunc quis venenatis commodo, ligula nunc posuere mauris, a aliquam dui massa cursus quam. Curabitur sit amet tellus semper, commodo lacus eget, elementum mi. Aenean varius finibus condimentum. Donec magna velit, varius eu suscipit vitae, luctus eu erat. Integer eleifend metus lectus, a cursus orci imperdiet non. Integer ullamcorper sapien ac justo venenatis tempor. Suspendisse laoreet massa at fringilla sagittis. Etiam dapibus fringilla lorem, ac auctor mauris laoreet vitae. Mauris auctor lobortis massa, ut molestie sem vulputate non. Duis eget interdum dolor. Sed vitae condimentum magna.</p>
-<p>Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Ut volutpat, tortor non fermentum ultricies, turpis dolor feugiat sapien, at tempor turpis purus nec est. Donec lacinia enim varius nunc bibendum, quis varius elit fermentum. Suspendisse blandit lacus sit amet ante venenatis finibus. Duis tellus neque, iaculis vel leo ut, aliquet mattis erat. Curabitur velit eros, aliquet ac felis ac, blandit consectetur sapien. Suspendisse in dapibus metus, eget venenatis metus.</p>
-<p>Nulla interdum facilisis augue, fermentum molestie tortor tempor a. Pellentesque gravida risus elit, nec varius quam rhoncus in. Nunc sit amet lectus purus. Donec bibendum dolor quis fermentum sodales. Curabitur vel nulla nulla. Nullam feugiat, justo ac suscipit tempor, lorem sem sollicitudin diam, et placerat nunc felis a felis. Duis eros enim, imperdiet sit amet nisi quis, euismod facilisis massa. Pellentesque vitae varius sapien. Ut tristique libero justo, quis hendrerit nunc pellentesque at. Donec arcu elit, porttitor posuere mauris suscipit, dapibus elementum neque. Quisque vehicula erat eget semper vestibulum. Fusce id dolor quis orci rhoncus dapibus vitae vitae diam. Vivamus blandit dictum nisl eget mattis.</p>
-<p>Proin sit amet ante dui. In mattis magna quis orci aliquam tincidunt. Pellentesque efficitur ligula vel malesuada ornare. Fusce feugiat mollis metus, in mattis tortor. Cras eget sem ac felis convallis accumsan et eu purus. Integer vulputate tempus nisl, quis luctus risus fermentum ac. Ut consectetur, quam vel euismod eleifend, ex orci facilisis est, a tempus mi nisi ac elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-<p>Duis elementum turpis in risus facilisis pretium. Nam non mattis sem. Vivamus rutrum finibus tortor, ac semper massa. Donec aliquam pretium dapibus. Integer sit amet orci at ipsum vulputate tristique. Nam consequat ultricies libero, a tincidunt sapien faucibus eu. Pellentesque finibus dapibus ante, ut fermentum arcu malesuada vitae. Mauris eu tincidunt massa. Curabitur placerat ultrices orci. Nunc sed ultricies tellus.</p>
-</div>
+<!--Event Description-->
+<div ng-bind-html="data.event.description"></div>
+
 </div>
 
 <div class="card">	
@@ -223,80 +224,20 @@
 <div class="tinys_wrapper"></div>
 </div>		
 
-<div>
-<ul>
-<li>This event has +5 years age policy.</li>
-<li>This show is rated as PG. (Parental Guidance)</li>
-<li>This event is a family friendly event.</li>
-<li>Dress code is smart-casual / sport casual</li>
-<li>Alcoholic beverages will not be served in this event.</li>
-<li>Food &amp; Non Alcoholic Beverages are available in the venue.</li>
-<li>Food &amp; Beverage from outside are not allowed in the venue.</li>
-<li>Each ticket grants access to one person.</li>
-<li>Use of professional cameras and/or photography equipment is NOT permitted in this show.</li>
-<li>Only authorized personnel can carry professional camera into the venue. Please refrain from carrying professional cameras without the necessary permissions from the organizers.</li>
-<li>The show will start at 08:00 PM.</li>
-<li>Doors to the stadium will open at 04:00 PM.</li>
-<li>Access to the seating area will open at 07:00 PM. (One hour before the show starting time)</li>
-<li>The show duration is 2 hours with a 20 minutes intermission after the first hour.</li>
-<li>Please arrive 30-45 minutes before the show to ensure smooth and timely entry as there may be traffic on the roads or at the venue check in points.</li>
-<li>Please take into consideration road and parking traffic to ensure timely entry.</li>
-<li>Please make sure to take your seat in your designated zone mentioned on your ticket.</li>
-<li>Please note that the seats are on first come first served basis within your dedicated zone.</li>
-<li>Please make sure not to leave any gap in between seats.</li>
-<li>Limited parking is available in the venue.</li>
-<li>Electronic tickets are your actual and final ticket</li>
-<li>Printed Electronic ticket must be presented at the venue entrance for scanning and validation.</li>
-<li>Customers must carry the original Credit or Debit card or clear photocopy of the card with which the tickets have been purchased in addition to valid original ID (Valid Passport,National ID, Driving License) for validation purposes at the gates for validation. Failure to provide the requested documents will prevent entry.</li>
-<li>Please make sure NO ONE, except you, has access to your electronic ticket to avoid duplicates as each ticket has unique barcode that can not be duplicated and grants access to one guest ONLY.</li>
-<li>Organizer will not be responsible for stolen, torn or duplicate tickets. Please make sure to keep your printed ticket in good condition.</li>
-<li>Please make sure to purchase your ticket from the ONLY exclusive and authorized ticketing partner of the event www.tixbox.com.</li>
-<li>Purchased Tickets are NOT exchangeable. </li>
-<li>Purchased Tickets are NON-Refundable.</li>
-<li>Organizers are not liable to refund or exchange tickets for those who did not attend the show or arrived late to the show.</li>
-<li>No Re-Entry is allowed in this event. Please make sure to carry the necessary items with you to avoid disappointment. </li>
-<li>Once you leave the venue, you can not return back to the venue.</li>
-<li>For any information or inquiry please contact our support team at support@tixbox.com or call us on +971 56 675 68 34-35.</li>
-</ul><strong>SILVER TICKET ( Lower Level &amp; Upper Level)</strong>
-<ul>
+<!--Event Terms Condition-->
+<div ng-bind-html="data.event.terms_condition"></div>
 
-<li>This event has +5 years age policy.</li>
-<li>This ticket grants access ONLY to your allocated zone.</li>
-<li>This ticket grants access for you to occupy any available seat on a first come first served bases within your dedicated zone.</li>
-<li>Alcoholic Beverages are NOT served in this event.</li>
-<li>Food &amp; Non Alcoholic Beverages are available in the venue.</li>
-</ul><strong>GOLD TICKET ( Lower Level &amp; Upper Level)</strong>
-<ul>
-
-<li>This event has +5 years age policy.</li>
-<li>This ticket grants access ONLY to your allocated zone.</li>
-<li>This ticket grants access for you to occupy any available seat on a first come first served bases within your dedicated zone .</li>
-<li>Alcoholic Beverages are NOT served in this event.</li>
-<li>Food &amp; Non Alcoholic Beverages are available in the venue.</li>
-</ul><strong>PLATINUM TICKET ( Lower Level &amp; Upper Level)</strong>
-<ul>
-
-<li>This event has +5 years age policy.</li>
-<li>This ticket grants access ONLY to your allocated zone.</li>
-<li>This ticket grants access for you to occupy any available seat on a first come first served bases within your dedicated zone .</li>
-<li>Alcoholic Beverages are NOT served in this event.</li>
-<li>Platinum seats are the best seats in the venue.</li>
-</ul><strong>FAN PIT TICKET ( On the ground floor closest to the performance area)</strong>
-<ul>
-
-<li>This event has +5 years age policy.</li>
-<li>This ticket grants access ONLY to your allocated zone.</li>
-<li>This ticket grants access for you to occupy any available seat on a first come first served bases within your dedicated zone.</li>
-<li>Alcoholic Beverages are NOT served in this event.</li>
-<li>Food &amp; Non Alcoholic Beverages are available in the venue.</li>
-</ul>
-</div>
 </div>
 
 			
 		</ion-content>          
 	</ion-view>
 </script>
+
+
+
+
+
 <script id="cart.html" type="text/ng-template">
 <ion-header-bar align-title="left" class="bar-assertive">
   <div class="buttons">

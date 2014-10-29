@@ -31,9 +31,9 @@ app.config(function($stateProvider, $urlRouterProvider) {
     });
 	
 	$stateProvider.state('events-page-details', {
-        url: '/events/:event_id/t_eveDetails',
+        url: '/events/:event_id/details',
         templateUrl: 'event-page-details.html',
-        controller: 'EventController'
+        controller: 'EventDetailsController'
     });
 	
 	$stateProvider.state('cart', {
@@ -88,14 +88,19 @@ app.config(function($stateProvider, $urlRouterProvider) {
 	
 });
 
-app.controller('AppController', function($scope, $state, $http, $ionicPopup, $rootScope, $ionicViewService, $ionicNavBarDelegate) {
+app.controller('AppController', function($rootScope, $scope, $state, $http, $ionicPopup, $rootScope, $ionicViewService, $ionicNavBarDelegate) {
+
+
     $scope.goBack = function() {
         $state.go('events');
     };
+	
+	
 });
 
 app.controller('SplashController', function($scope, $state, $http, $ionicPopup, $rootScope, $ionicViewService, $ionicNavBarDelegate) {
     
+	$rootScope.events = {};//Empty on loadding
 	
 	setTimeout(function(){
 		$state.go('events');
@@ -109,16 +114,23 @@ app.controller('SplashController', function($scope, $state, $http, $ionicPopup, 
 });
 
 
-app.controller('LoginController', function($scope, $state, $http, $ionicPopup, $rootScope, $ionicViewService, $ionicNavBarDelegate) {
+app.controller('LoginController', function($scope,$rootScope, $state, $http, $ionicPopup, $rootScope, $ionicViewService, $ionicNavBarDelegate) {
     $scope.goBack = function() {
         $state.go('events');
     };
 });
 
 
-app.controller('EventController', function($scope, $state, $http, $ionicPopup, $rootScope, $ionicViewService, $ionicNavBarDelegate,$ionicLoading) {
+app.controller('EventController', function($scope,$rootScope, $state, $http, $ionicPopup, $rootScope, $ionicViewService, $ionicNavBarDelegate,$ionicLoading) {
 
+
+	
 	$scope.events = {};
+	$rootScope.event = {};//Empty the data
+	
+	
+	
+	
 	$ionicLoading.show({
 		template: '<i class="icon ion-loading-c"></i>'
 	});
@@ -134,7 +146,7 @@ app.controller('EventController', function($scope, $state, $http, $ionicPopup, $
 		
 		$ionicLoading.hide();
 		$scope.events = data.events;			
-		console.log($scope.events);
+		$rootScope.events = $scope.events;//Assign to root scope
 		
 	}).error(function(data, status, header, config) {
 		$ionicLoading.hide();
@@ -154,28 +166,61 @@ app.controller('EventController', function($scope, $state, $http, $ionicPopup, $
 	
 });
 
-app.controller('EventPageController', function($scope, $state, $http, $ionicPopup, $rootScope, $ionicViewService, $ionicNavBarDelegate,$ionicLoading,$stateParams) {
+app.controller('EventPageController', function($scope,$rootScope, $state, $http, $ionicPopup, $rootScope, $ionicViewService, $ionicNavBarDelegate,$ionicLoading,$stateParams) {
 
 	$scope.data = {};
 	$scope.image = {};
-	
-	$ionicLoading.show({
-		template: '<i class="icon ion-loading-c"></i>'
-	});
 
-	$scope.event_id = $stateParams.event_id;
+	if(Object.keys($rootScope.event).length === 0){	
 	
-	$http({
-		method: 'jsonp',
-		url: basepath + 'appevent/'+$scope.event_id+'?callback=JSON_CALLBACK',
-		params: {
-			"event": "list"			
-		}
-	}).success(function(data, status, header, config) {
+		$ionicLoading.show({
+			template: '<i class="icon ion-loading-c"></i>'
+		});
+
+		$scope.event_id = $stateParams.event_id;
 		
-		$ionicLoading.hide();
-		$scope.data = data;
-		//console.log($scope.data);
+		$http({
+			method: 'jsonp',
+			url: basepath + 'appevent/'+$scope.event_id+'?callback=JSON_CALLBACK',
+			params: {
+				"event": "list"			
+			}
+		}).success(function(data, status, header, config) {
+			
+			$ionicLoading.hide();
+			
+			
+			$scope.data = data;
+			$rootScope.event = $scope.data;//Assing to root scope
+			console.log($rootScope.event);		
+			
+			$scope.image = angular.fromJson($scope.data.event.image);
+			
+			$scope.image.medium = [];
+			$scope.image.large = [];
+			$scope.image.small = [];
+			
+			angular.forEach($scope.image, function(value, key) {
+				
+				if(value.mode == "medium") $scope.image.medium.push(value.url);
+				else if(value.mode == "large") $scope.image.large.push(value.url);
+				else if(value.mode == "small") $scope.image.small.push(value.url);
+				
+			});
+			
+			
+		}).error(function(data, status, header, config) {
+			$ionicLoading.hide();
+			var alertPopup = $ionicPopup.alert({
+				title: 'Network Error',
+				template: 'Please check data connection'
+			});
+		});
+		
+		
+	}else{
+
+		$scope.data = $rootScope.event;//Assing to root scope
 		$scope.image = angular.fromJson($scope.data.event.image);
 		
 		$scope.image.medium = [];
@@ -189,25 +234,55 @@ app.controller('EventPageController', function($scope, $state, $http, $ionicPopu
 			else if(value.mode == "small") $scope.image.small.push(value.url);
 			
 		});
-		
-		
-	}).error(function(data, status, header, config) {
-		$ionicLoading.hide();
-		var alertPopup = $ionicPopup.alert({
-			title: 'Network Error',
-			template: 'Please check data connection'
-		});
-	});
-		
+			
+	}//In Cache
+	
 		
 	
     $scope.goBack = function() {
-        $state.go('events');
+        $ionicNavBarDelegate.back();
     };
 	
 	
 	
 });
+
+//Details of Event
+app.controller('EventDetailsController', function($scope,$rootScope, $state, $http, $ionicPopup, $rootScope, $ionicViewService, $ionicNavBarDelegate,$stateParams) {
+
+	console.log($rootScope.event);
+	
+	$scope.data = $rootScope.event;
+	$scope.image = {};
+	$scope.event_id = $stateParams.event_id;
+	
+	
+	
+	$scope.image = angular.fromJson($scope.data.event.image);
+		
+	$scope.image.medium = [];
+	$scope.image.large = [];
+	$scope.image.small = [];
+	
+	angular.forEach($scope.image, function(value, key) {
+		
+		if(value.mode == "medium") $scope.image.medium.push(value.url);
+		else if(value.mode == "large") $scope.image.large.push(value.url);
+		else if(value.mode == "small") $scope.image.small.push(value.url);
+		
+		
+	});
+		
+	
+    $scope.goBack = function() {
+         $ionicNavBarDelegate.back();
+    };
+	
+	
+	
+});
+
+
 
 
 app.controller('CartController', function($scope, $state, $http, $ionicPopup, $rootScope, $ionicViewService, $ionicNavBarDelegate) {
