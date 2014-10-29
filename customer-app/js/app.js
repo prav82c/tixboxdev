@@ -24,6 +24,12 @@ app.config(function($stateProvider, $urlRouterProvider) {
         controller: 'EventController'
     });
 	
+	$stateProvider.state('events-cat', {
+        url: '/events/:cat_id',
+        templateUrl: 'events.html',
+        controller: 'EventController'
+    });
+	
 	$stateProvider.state('events-page', {
         url: '/events/:event_id',
         templateUrl: 'event-page.html',
