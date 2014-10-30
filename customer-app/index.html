@@ -71,7 +71,7 @@
 					  	<h2 class="home_eventTitle">{{data.Event.title}}</h2>
 						<i class="icon ion-calendar"></i> &nbsp;<span>{{data.Event.date}}</span>
 					  </div>
-					  <div class="col"><a class="button button-block button-assertive" href="#/events/{{data.Event.event_id}}">BUY</a></div>
+					  <div class="col"><a class="button button-block button-assertive" href="#/event/{{data.Event.event_id}}">BUY</a></div>
 					</div>
 				</div>
 				
@@ -112,7 +112,7 @@
 	<ion-view title="EventPage">
 		<ion-content>
 		<div class="eventpage">
-		<ion-slide-box on-slide-changed="slideHasChanged($index)" nf-if="image.large">
+		<ion-slide-box on-slide-changed="slideHasChanged($index)" ng-if="image.large">
 			  
 			  <ion-slide ng-repeat="image in image.large">
 				<div class="box"><img src="{{image}}" class="eveimg"></div>
@@ -133,7 +133,7 @@
 			<p><i class="icon ion-ios7-location"></i> <span>{{data.event.event_address.address}}</span></p>
 			<p><i class="icon ion-star"></i> <span>{{data.event.event_address.city_id}}</span></p>
 			<div>
-			<a href="#/events/{{data.event.event_id}}/details" class="button icon-right ion-chevron-right button-outline button-block button-stable">
+			<a href="#/event/{{data.event.event_id}}/details" class="button icon-right ion-chevron-right button-outline button-block button-stable">
 			  See More Details
 			</a>
 			</div>
@@ -215,7 +215,7 @@
 <script id="event-page-details.html" type="text/ng-template">
 <ion-header-bar align-title="left" class="bar-assertive">
   <div class="buttons">
-    <button class="button button-icon icon ion-ios7-arrow-back" ng-click="goBack()"></button>
+    <button class="button button-icon icon ion-ios7-arrow-back" ng-click="goEventPage()"></button>
 	<img src="lib/ionic/img/logo_tb_small.png" alt="tixbox.com">
   </div>
   <h1 class="title title-left"></h1>

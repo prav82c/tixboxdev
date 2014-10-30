@@ -31,13 +31,13 @@ app.config(function($stateProvider, $urlRouterProvider) {
     });
 	
 	$stateProvider.state('events-page', {
-        url: '/events/:event_id',
+        url: '/event/:event_id',
         templateUrl: 'event-page.html',
         controller: 'EventPageController'
     });
 	
 	$stateProvider.state('events-page-details', {
-        url: '/events/:event_id/details',
+        url: '/event/:event_id/details',
         templateUrl: 'event-page-details.html',
         controller: 'EventDetailsController'
     });
@@ -96,13 +96,8 @@ app.config(function($stateProvider, $urlRouterProvider) {
 
 app.controller('AppController', function($rootScope, $scope, $state, $http, $ionicPopup, $rootScope, $ionicViewService, $ionicNavBarDelegate,$ionicSideMenuDelegate) {
 
-	
-
-  
-    $scope.goBack = function() {
-        $state.go('events');
-    };
-	
+	$rootScope.event = {};//Empty on loadding
+	$rootScope.events = {};//Empty on loadding
 	
 });
 
@@ -135,9 +130,7 @@ app.controller('EventController', function($scope,$rootScope, $state, $http, $io
 	
 	$scope.events = {};
 	$rootScope.event = {};//Empty the data
-	
-	
-	
+		
 	
 	$ionicLoading.show({
 		template: '<i class="icon ion-loading-c"></i>'
@@ -163,12 +156,6 @@ app.controller('EventController', function($scope,$rootScope, $state, $http, $io
 			template: 'Please check data connection'
 		});
 	});
-		
-		
-	
-    $scope.goBack = function() {
-        $state.go('events');
-    };
 	
 	$scope.showCategory = function() {
 		$ionicSideMenuDelegate.toggleLeft();
@@ -176,13 +163,15 @@ app.controller('EventController', function($scope,$rootScope, $state, $http, $io
 	
 });
 
-app.controller('EventPageController', function($scope,$rootScope, $state, $http, $ionicPopup, $rootScope, $ionicViewService, $ionicNavBarDelegate,$ionicLoading,$stateParams) {
+app.controller('EventPageController', function($scope,$rootScope,$state, $http, $ionicPopup, $rootScope, $ionicViewService, $ionicNavBarDelegate,$ionicLoading,$stateParams) {
 
 	$scope.data = {};
 	$scope.image = {};
+	
+
 
 	if(Object.keys($rootScope.event).length === 0){	
-	
+
 		$ionicLoading.show({
 			template: '<i class="icon ion-loading-c"></i>'
 		});
@@ -202,8 +191,7 @@ app.controller('EventPageController', function($scope,$rootScope, $state, $http,
 			
 			$scope.data = data;
 			$rootScope.event = $scope.data;//Assing to root scope
-			console.log($rootScope.event);		
-			
+					
 			$scope.image = angular.fromJson($scope.data.event.image);
 			
 			$scope.image.medium = [];
@@ -230,9 +218,10 @@ app.controller('EventPageController', function($scope,$rootScope, $state, $http,
 		
 	}else{
 
+		
 		$scope.data = $rootScope.event;//Assing to root scope
 		$scope.image = angular.fromJson($scope.data.event.image);
-		
+
 		$scope.image.medium = [];
 		$scope.image.large = [];
 		$scope.image.small = [];
@@ -250,7 +239,7 @@ app.controller('EventPageController', function($scope,$rootScope, $state, $http,
 		
 	
     $scope.goBack = function() {
-        $ionicNavBarDelegate.back();
+        $state.go('events');		 
     };
 	
 	
@@ -260,8 +249,6 @@ app.controller('EventPageController', function($scope,$rootScope, $state, $http,
 //Details of Event
 app.controller('EventDetailsController', function($scope,$rootScope, $state, $http, $ionicPopup, $rootScope, $ionicViewService, $ionicNavBarDelegate,$stateParams) {
 
-	console.log($rootScope.event);
-	
 	$scope.data = $rootScope.event;
 	$scope.image = {};
 	$scope.event_id = $stateParams.event_id;
@@ -273,6 +260,7 @@ app.controller('EventDetailsController', function($scope,$rootScope, $state, $ht
 	$scope.image.medium = [];
 	$scope.image.large = [];
 	$scope.image.small = [];
+
 	
 	angular.forEach($scope.image, function(value, key) {
 		
@@ -284,8 +272,8 @@ app.controller('EventDetailsController', function($scope,$rootScope, $state, $ht
 	});
 		
 	
-    $scope.goBack = function() {
-         $ionicNavBarDelegate.back();
+    $scope.goEventPage = function() {
+		$state.go('events-page',{event_id:$scope.event_id});		 
     };
 	
 	
