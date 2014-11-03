@@ -141,22 +141,15 @@
 			<hr class="light">
 			<div class="evepkgs">
 				<div class="detTabHeadhold">
-				<h2 class="detTabHead_new">Select Tickets</h2>
-				<div class="tinys_wrapper"></div>
+					<h2 class="detTabHead_new">Select Tickets</h2>
+					<div class="tinys_wrapper"></div>
 				</div>
 				
-				<!--<div class="detTabHeadhold">
-				<h2 class="detTabHead_new">Select Seats</h2>
-				<div class="tinys_wrapper"></div>
-				</div>
-				<ion-scroll zooming="true" direction="xy" style="width: 100%; height: 500px">
-  <div style="width: 5000px; height: 5000px; background: url('https://upload.wikimedia.org/wikipedia/commons/a/ad/Europe_geological_map-en.jpg') repeat"></div>
- </ion-scroll>-->
-				<div class="list">
-					<div class="home_eventTitle mbtty">General Admission</div>
+				<div class="list" ng-repeat="ticket in data.event.ticket">
+					<div class="home_eventTitle mbtty">{{ticket.ticket_name}}</div>
 					  <label class="item item-input item-select">
 						<div class="input-label">
-						  AED 100.00
+						  AED {{ticket.price}}
 						</div>
 						<select>
 						  <option>1</option>
@@ -165,32 +158,8 @@
 						</select>
 					  </label>
 				</div>
-				<div class="list">
-					<div class="home_eventTitle mbtty">Silver</div>
-					  <label class="item item-input item-select">
-						<div class="input-label">
-						  AED 150.00
-						</div>
-						<select>
-						  <option>1</option>
-						  <option selected>2</option>
-						  <option>3</option>
-						</select>
-					  </label>
-				</div>
-				<div class="list">
-					<div class="home_eventTitle mbtty">Gold</div>
-					  <label class="item item-input item-select">
-						<div class="input-label">
-						  AED 200.00
-						</div>
-						<select>
-						  <option>1</option>
-						  <option selected>2</option>
-						  <option>3</option>
-						</select>
-					  </label>
-				</div>
+				
+				
 			</div>
 			<hr class="light">
 			<div class="mbtty text-center"><span class="tprice">AED 550.00</span></div>
