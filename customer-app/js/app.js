@@ -163,10 +163,12 @@ app.controller('EventController', function($scope,$rootScope, $state, $http, $io
 	
 });
 
-app.controller('EventPageController', function($scope,$rootScope,$state, $http, $ionicPopup, $rootScope, $ionicViewService, $ionicNavBarDelegate,$ionicLoading,$stateParams) {
+app.controller('EventPageController', function($scope,$rootScope,$state, $http, $ionicPopup, $rootScope, $ionicViewService, $ionicNavBarDelegate,$ionicLoading,$stateParams,$sce) {
 
 	$scope.data = {};
 	$scope.image = {};
+	$scope.total = 0;
+	$scope.selected = {};
 	
 
 
@@ -236,11 +238,34 @@ app.controller('EventPageController', function($scope,$rootScope,$state, $http, 
 			
 	}//In Cache
 	
+	$scope.selectBox = function(from,to) {
+		var select = "";
+		for(i=from;i<=to;i++){
+			select+="<option value='"+i+"'>"+i+"</option>";
+		}
+        return $sce.trustAsHtml(select);
+    };	
+	
+	
+	$scope.updatePrice = function(event_ticket_id,price){
+
+		var $el = angular.element(document.querySelector('#tickets_'+event_ticket_id));
+		var ticket = $el[0];
+		var quantity = ticket.value;
+		var price = ticket.attributes.price.value;
 		
+		$scope.total = Number(quantity)*Number(price);
+		
+	}
+	
+	
+	
 	
     $scope.goBack = function() {
         $state.go('events');		 
     };
+	
+	
 	
 	
 	
