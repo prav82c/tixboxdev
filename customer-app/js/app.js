@@ -100,6 +100,7 @@ app.controller('AppController', function($rootScope, $scope, $state, $http, $ion
 	$rootScope.events = {};//Empty on loadding
 	
 	$rootScope.cart = [];
+	$rootScope.total = 0;
 	
 });
 
@@ -253,15 +254,21 @@ app.controller('EventPageController', function($scope,$rootScope,$state, $http, 
 		
 		$scope.total = 0;
 		var $el = angular.element(document.querySelectorAll('.sell_tickets'));
-		for(i=0;i<=$el.length;i++){
-		
+	
+		for(i=0;i<$el.length;i++){	
+			
+			
 			var ticket = $el[i];
+		
 			var quantity = Number(ticket.value);
 			var price = ticket.attributes.price.value;		
 			var event_ticket_id = ticket.attributes.event_ticket_id.value;
+			var event_id = ticket.attributes.event_id.value;	
+			
 			if(quantity > 0){
 				$rootScope.cart.push(
 					{
+						"event_id":event_id,
 						"event_ticket_id":event_ticket_id,
 						"price":price,
 						"quantity":quantity
@@ -270,21 +277,17 @@ app.controller('EventPageController', function($scope,$rootScope,$state, $http, 
 				
 				$scope.total+= quantity*price;
 			}
+			//console.log($rootScope.cart);
 			
-		}
+		};//Loop
 	
-		/*
-		var $el = angular.element(document.querySelector('#tickets_'+event_ticket_id));
-		
-		
-		$rootScope.cart
-		
-		$scope.total = Number(quantity)*Number(price);
-		*/
+		$rootScope.total = $scope.total;
 		
 	}
 	
-	
+	$scope.buy = function() {
+        $state.go('cart');		 
+    };
 	
 	
     $scope.goBack = function() {
@@ -334,7 +337,10 @@ app.controller('EventDetailsController', function($scope,$rootScope, $state, $ht
 
 
 
-app.controller('CartController', function($scope, $state, $http, $ionicPopup, $rootScope, $ionicViewService, $ionicNavBarDelegate) {
+app.controller('CartController', function($scope, $rootScope, $state, $http, $ionicPopup, $rootScope, $ionicViewService, $ionicNavBarDelegate) {
+	
+	$scope.total = $rootScope.total;
+	
     $scope.goBack = function() {
         $state.go('events');
     };

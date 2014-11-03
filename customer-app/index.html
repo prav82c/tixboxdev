@@ -151,7 +151,7 @@
 						<div class="input-label">
 						  AED {{ticket.price}}
 						</div>
-						<select ng-model="selected" name="tickets" id="tickets_{{ticket.event_ticket_id}}" class="sell_tickets" price="{{ticket.price}}" event_ticket_id="{{ticket.event_ticket_id}}"  ng-bind-html="selectBox(ticket.buy_min_limit,ticket.buy_max_limit)" ng-change="updatePrice(ticket.event_ticket_id,ticket.price)"></select>
+						<select ng-model="selected" name="tickets" id="tickets_{{ticket.event_ticket_id}}" class="sell_tickets" price="{{ticket.price}}" event_ticket_id="{{ticket.event_ticket_id}}"  event_id="{{ticket.event_id}}" ng-bind-html="selectBox(ticket.buy_min_limit,ticket.buy_max_limit)" ng-change="updatePrice(ticket.event_ticket_id,ticket.price)"></select>
 					  </label>
 				</div>
 				
@@ -159,7 +159,7 @@
 			</div>
 			<hr class="light">
 			<div class="mbtty text-center"><span class="tprice">AED {{total}}</span></div>
-			<button class="button button-block button-assertive">
+			<button class="button button-block button-assertive" ng-click="buy()">
 			  Buy Now
 			</button>
 			<hr class="light">
@@ -275,7 +275,7 @@
 					</div>
 					
 					<hr class="light">
-			<div class="mbtty text-center">Total<br><span class="tprice">AED 550.00</span></div>
+			<div class="mbtty text-center">Total<br><span class="tprice">AED {{total}}</span></div>
 			<a href="#checkout" class="button button-block button-assertive">
 			  Proceed to Pay
 			</a>
