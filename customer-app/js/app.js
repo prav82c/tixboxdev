@@ -240,7 +240,7 @@ app.controller('EventPageController', function($scope,$rootScope,$state, $http, 
 	
 	$scope.selectBox = function(from,to) {
 		var select = "";
-		for(i=from;i<=to;i++){
+		for(i=0;i<=to;i++){
 			select+="<option value='"+i+"'>"+i+"</option>";
 		}
         return $sce.trustAsHtml(select);
