@@ -151,6 +151,7 @@ app.controller('EventController', function($scope,$rootScope, $state, $http, $io
 		$ionicLoading.hide();
 		$scope.events = data.events;			
 		$rootScope.events = $scope.events;//Assign to root scope
+		//console.log($rootScope.events);
 		
 	}).error(function(data, status, header, config) {
 		$ionicLoading.hide();
@@ -164,6 +165,7 @@ app.controller('EventController', function($scope,$rootScope, $state, $http, $io
 		$ionicSideMenuDelegate.toggleLeft();
 	};
 	
+	
 });
 
 app.controller('EventPageController', function($scope,$rootScope,$state, $http, $ionicPopup, $rootScope, $ionicViewService, $ionicNavBarDelegate,$ionicLoading,$stateParams,$sce) {
@@ -173,7 +175,7 @@ app.controller('EventPageController', function($scope,$rootScope,$state, $http, 
 	$scope.total = 0;
 	$scope.selected = {};
 	
-
+	//console.log($rootScope.events);
 
 	if(Object.keys($rootScope.event).length === 0){	
 
@@ -296,7 +298,7 @@ app.controller('EventPageController', function($scope,$rootScope,$state, $http, 
 	
 	
 	
-	
+	//console.log($rootScope.events);
 	
 });
 
@@ -337,9 +339,39 @@ app.controller('EventDetailsController', function($scope,$rootScope, $state, $ht
 
 
 
-app.controller('CartController', function($scope, $rootScope, $state, $http, $ionicPopup, $rootScope, $ionicViewService, $ionicNavBarDelegate) {
+app.controller('CartController', function($scope, $rootScope, $state, $http, $ionicPopup, $rootScope, $ionicViewService, $ionicNavBarDelegate,$filter) {
 	
 	$scope.total = $rootScope.total;
+	$scope.events = $rootScope.events;//Get all events
+	$scope.cart = $rootScope.cart;//Get all cart
+	
+	$scope.items = [];
+	
+	//console.log($rootScope.events);
+	
+	angular.forEach($scope.cart, function(value, key) {
+		var found = $filter('filter')($scope.events,function(data){
+			return data.Event.event_id == value.event_id;
+		});
+		//$filter('filter')(foo.results, {id: 1})[0];
+		console.log(found);
+		
+		$scope.items.push({
+			"event_id":value.event_id,
+			"event_ticket_id":value.event_ticket_id,
+			"price":value.price,
+			"quantity":value.quantity,
+			"title":found[0].Event.title,
+			"date":found[0].Event.date,
+			"image":found[0].Event.cart
+			}	
+		);
+		
+		
+		
+	});
+	
+	
 	
     $scope.goBack = function() {
         $state.go('events');

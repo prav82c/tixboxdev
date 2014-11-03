@@ -240,29 +240,13 @@
 		<ion-content>
 				<div class="list card">
 				
-					<div class="item item-thumbnail-left">
-					  <img src="lib/ionic/img/cart1.jpg">
+					<div class="item item-thumbnail-left" ng-repeat="cart in items">
+					  <img src="{{cart.image}}">
 					  <h2>Pretty Hate Machine</h2>
-					  	<p><i class="icon ion-calendar"></i> <span>Nov 7, 2014, Friday</span></p>
-						<p><i class="icon ion-clock"></i> <span>7:00 PM-1:00 AM</span></p>
-						<p><i class="icon ion-pricetag"></i> <span>AED 299.00</span></p>
+					  	<p><i class="icon ion-calendar"></i> <span>{{cart.date}}</span></p>
+						<p><i class="icon ion-pricetag"></i> <span>AED {{cart.price * cart.quantity}} ({{cart.quantity}})</span></p>
 					</div>
 				
-					<div class="item item-thumbnail-left">
-					  <img src="lib/ionic/img/cart2.jpg">
-					  <h2>Pretty Hate Machine</h2>
-					  <p><i class="icon ion-calendar"></i> <span>Nov 7, 2014, Friday</span></p>
-						<p><i class="icon ion-clock"></i> <span>7:00 PM-1:00 AM</span></p>
-						<p><i class="icon ion-pricetag"></i> <span>AED 299.00</span></p>
-					</div>
-					
-					<div class="item item-thumbnail-left">
-					  <img src="lib/ionic/img/cart3.jpg">
-					  <h2>Pretty Hate Machine</h2>
-					  <p><i class="icon ion-calendar"></i> <span>Nov 7, 2014, Friday</span></p>
-						<p><i class="icon ion-clock"></i> <span>7:00 PM-1:00 AM</span></p>
-						<p><i class="icon ion-pricetag"></i> <span>AED 299.00</span></p>
-					</div>
 					
 					<hr class="light">
 					<div class="list">
