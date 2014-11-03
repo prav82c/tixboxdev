@@ -151,7 +151,7 @@
 						<div class="input-label">
 						  AED {{ticket.price}}
 						</div>
-						<select ng-model="selected" name="tickets" id="tickets_{{ticket.event_ticket_id}}" class="tickets" price="{{ticket.price}}" event_ticket_id="{{ticket.event_ticket_id}}"  ng-bind-html="selectBox(ticket.buy_min_limit,ticket.buy_max_limit)" ng-change="updatePrice(ticket.event_ticket_id,ticket.price)"></select>
+						<select ng-model="selected" name="tickets" id="tickets_{{ticket.event_ticket_id}}" class="sell_tickets" price="{{ticket.price}}" event_ticket_id="{{ticket.event_ticket_id}}"  ng-bind-html="selectBox(ticket.buy_min_limit,ticket.buy_max_limit)" ng-change="updatePrice(ticket.event_ticket_id,ticket.price)"></select>
 					  </label>
 				</div>
 				
