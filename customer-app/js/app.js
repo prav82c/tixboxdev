@@ -102,6 +102,8 @@ app.controller('AppController', function($rootScope, $scope, $state, $http, $ion
 	$rootScope.cart = [];
 	$rootScope.total = 0;
 	
+		
+	
 });
 
 app.controller('SplashController', function($scope, $state, $http, $ionicPopup, $rootScope, $ionicViewService, $ionicNavBarDelegate) {
@@ -165,6 +167,9 @@ app.controller('EventController', function($scope,$rootScope, $state, $http, $io
 		$ionicSideMenuDelegate.toggleLeft();
 	};
 	
+	$scope.showProfile = function() {
+		$ionicSideMenuDelegate.toggleRight();
+	};
 	
 });
 
