@@ -92,6 +92,12 @@ app.config(function($stateProvider, $urlRouterProvider) {
         controller: 'ProfileController'
     });
 	
+	$stateProvider.state('tickets', {
+        url: '/tickets',
+        templateUrl: 'tickets.html',
+        controller: 'TicketController'
+    });
+	
 });
 
 app.controller('AppController', function($rootScope, $scope, $state, $http, $ionicPopup, $rootScope, $ionicViewService, $ionicNavBarDelegate,$ionicSideMenuDelegate) {
@@ -127,6 +133,17 @@ app.controller('LoginController', function($scope,$rootScope, $state, $http, $io
         $state.go('events');
     };
 });
+
+app.controller('TicketController', function($scope,$rootScope, $state, $http, $ionicPopup, $rootScope, $ionicViewService, $ionicNavBarDelegate,$sce) {
+    
+	$scope.goBack = function() {
+        $state.go('events');
+    };
+    
+    $scope.ticket = $sce.trustAsResourceUrl("http://www.dev.tixbox.co/app/mytickets/861415891326?email=kpchamy.php@gmail.com&password=123456")
+	
+});
+
 
 
 app.controller('EventController', function($scope,$rootScope, $state, $http, $ionicPopup, $rootScope, $ionicViewService, $ionicNavBarDelegate,$ionicLoading,$ionicSideMenuDelegate) {

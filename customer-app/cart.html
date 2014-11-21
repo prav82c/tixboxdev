@@ -1,0 +1,46 @@
+<ion-header-bar align-title="left" class="bar-assertive">
+  <div class="buttons">
+    <button class="button button-icon icon ion-navicon"></button>
+	<img src="lib/ionic/img/logo_tb_small.png" alt="tixbox.com">
+  </div>
+  <h1 class="title title-left"></h1>
+  <div class="buttons">
+    <button class="button button-icon icon ion-ios7-cart"></button>
+    <button class="button button-icon icon ion-ios7-gear"></button>
+	
+  </div>
+</ion-header-bar>
+	<ion-view title="Cart Page">
+		<ion-content>
+				<div class="list card">
+				
+					<div class="item item-thumbnail-left" ng-repeat="cart in items">
+					  <img src="{{cart.image}}">
+					  <h2>Pretty Hate Machine</h2>
+					  	<p><i class="icon ion-calendar"></i> <span>{{cart.date}}</span></p>
+						<p><i class="icon ion-pricetag"></i> <span>AED {{cart.price * cart.quantity}} ({{cart.quantity}})</span></p>
+					</div>
+				
+					
+					<hr class="light">
+					<div class="list">
+					  <div class="item item-input-inset">
+						<label class="item-input-wrapper">
+						  <input type="text" placeholder="Enter Promocode">
+						</label>
+						<button class="button button-assertive icon ion-checkmark"></button>
+					  </div>
+					</div>
+					
+					<hr class="light">
+			<div class="mbtty text-center">Total<br><span class="tprice">AED {{total}}</span></div>
+			<a href="#checkout" class="button button-block button-assertive">
+			  Proceed to Pay
+			</a>
+				
+				</div>
+				
+				
+				
+		</ion-content>          
+	</ion-view>

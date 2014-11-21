@@ -1,0 +1,71 @@
+<ion-header-bar align-title="left" class="bar-assertive">
+  <div class="buttons">
+    <button class="button button-icon icon ion-ios7-arrow-back" ng-click="goBack()"></button>
+	<img src="lib/ionic/img/logo_tb_small.png" alt="tixbox.com">
+  </div>
+  <h1 class="title title-left"></h1>
+  <div class="buttons">
+    <button class="button button-icon icon ion-ios7-cart"></button>
+    <button class="button button-icon icon ion-ios7-gear"></button>
+	<button class="button button-icon icon ion-ios7-person" ng-click="showProfile()"></button>
+  </div>
+</ion-header-bar>
+	<ion-view title="EventPage">
+		<ion-content>
+		<div class="eventpage">
+		<ion-slide-box on-slide-changed="slideHasChanged($index)" ng-if="image.large">
+			  
+			  <ion-slide ng-repeat="image in image.large">
+				<div class="box"><img src="{{image}}" class="eveimg"></div>
+			  </ion-slide>
+			  
+		</ion-slide-box>
+		
+	    <div class="evedets padtty clearfix">
+			<h1 class="eventTitle">{{data.event.title}}</h1>
+			<p ng-bind-html="data.event.short_description"></p>
+			<hr class="light">
+			<div>
+			<div class="detTabHeadhold">
+				<h2 class="detTabHead_new">Event Details</h2>
+				<div class="tinys_wrapper"></div>
+				</div>
+			<p><i class="icon ion-calendar"></i> <span>{{data.event.start_date}}</span></p>
+			<p><i class="icon ion-ios7-location"></i> <span>{{data.event.event_address.address}}</span></p>
+			<p><i class="icon ion-star"></i> <span>{{data.event.event_address.city_id}}</span></p>
+			<div>
+			<a href="#/event/{{data.event.event_id}}/details" class="button icon-right ion-chevron-right button-outline button-block button-stable">
+			  See More Details
+			</a>
+			</div>
+			</div>
+			<hr class="light">
+			<div class="evepkgs">
+				<div class="detTabHeadhold">
+					<h2 class="detTabHead_new">Select Tickets</h2>
+					<div class="tinys_wrapper"></div>
+				</div>
+				
+				<div class="list" ng-repeat="ticket in data.event.ticket">
+					<div class="home_eventTitle mbtty">{{ticket.ticket_name}}</div>
+					  <label class="item item-input item-select">
+						<div class="input-label">
+						  AED {{ticket.price}}
+						</div>
+						<select ng-model="selected" name="tickets" id="tickets_{{ticket.event_ticket_id}}" class="sell_tickets" price="{{ticket.price}}" event_ticket_id="{{ticket.event_ticket_id}}"  event_id="{{ticket.event_id}}" ng-bind-html="selectBox(ticket.buy_min_limit,ticket.buy_max_limit)" ng-change="updatePrice(ticket.event_ticket_id,ticket.price)"></select>
+					  </label>
+				</div>
+				
+				
+			</div>
+			<hr class="light">
+			<div class="mbtty text-center"><span class="tprice">AED {{total}}</span></div>
+			<button class="button button-block button-assertive" ng-click="buy()">
+			  Buy Now
+			</button>
+			<hr class="light">
+			
+		</div>
+		</div>
+	</ion-content>          
+</ion-view>
