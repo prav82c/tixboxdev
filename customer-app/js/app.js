@@ -123,6 +123,10 @@ app.controller('AppController', function($rootScope, $scope, $state, $http, $ion
 		}
 	};
 	
+	$scope.showCart = function(){
+		$state.go('cart');
+	};
+	
 });
 
 app.controller('SplashController', function($scope, $state, $http, $ionicPopup, $rootScope, $ionicViewService, $ionicNavBarDelegate) {
