@@ -104,11 +104,24 @@ app.controller('AppController', function($rootScope, $scope, $state, $http, $ion
 
 	$rootScope.event = {};//Empty on loadding
 	$rootScope.events = {};//Empty on loadding
+	$rootScope.user = {};
+	
 	
 	$rootScope.cart = [];
 	$rootScope.total = 0;
 	
 		
+	$scope.showProfile = function() {
+		
+		if($rootScope.user.session){
+			
+			$ionicSideMenuDelegate.toggleRight();
+		}else {
+		
+			$state.go('login');
+		
+		}
+	};
 	
 });
 
@@ -129,9 +142,13 @@ app.controller('SplashController', function($scope, $state, $http, $ionicPopup, 
 
 
 app.controller('LoginController', function($scope,$rootScope, $state, $http, $ionicPopup, $rootScope, $ionicViewService, $ionicNavBarDelegate) {
+
+
     $scope.goBack = function() {
         $state.go('events');
     };
+	
+	
 });
 
 app.controller('TicketController', function($scope,$rootScope, $state, $http, $ionicPopup, $rootScope, $ionicViewService, $ionicNavBarDelegate,$sce) {
@@ -184,9 +201,7 @@ app.controller('EventController', function($scope,$rootScope, $state, $http, $io
 		$ionicSideMenuDelegate.toggleLeft();
 	};
 	
-	$scope.showProfile = function() {
-		$ionicSideMenuDelegate.toggleRight();
-	};
+	
 	
 });
 
