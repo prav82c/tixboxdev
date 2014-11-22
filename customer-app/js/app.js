@@ -98,6 +98,12 @@ app.config(function($stateProvider, $urlRouterProvider) {
         controller: 'TicketController'
     });
 	
+	$stateProvider.state('ticket', {
+        url: '/ticket/:ticket_id',
+        templateUrl: 'ticket.html',
+        controller: 'TicketController'
+    });
+	
 });
 
 app.controller('AppController', function($rootScope, $scope, $state, $http, $ionicPopup, $rootScope, $ionicViewService, $ionicNavBarDelegate,$ionicSideMenuDelegate) {
@@ -105,6 +111,8 @@ app.controller('AppController', function($rootScope, $scope, $state, $http, $ion
 	$rootScope.event = {};//Empty on loadding
 	$rootScope.events = {};//Empty on loadding
 	$rootScope.user = {};
+	$rootScope.user.email = "kpchamy.php@gmail.com";
+	$rootScope.user.password = "123456";
 	
 	
 	$rootScope.cart = [];
@@ -116,10 +124,11 @@ app.controller('AppController', function($rootScope, $scope, $state, $http, $ion
 		if($rootScope.user.session){
 			
 			$ionicSideMenuDelegate.toggleRight();
+			
 		}else {
 		
-			$state.go('login');
-		
+			//$state.go('login');
+			$ionicSideMenuDelegate.toggleRight();
 		}
 	};
 	
@@ -155,13 +164,51 @@ app.controller('LoginController', function($scope,$rootScope, $state, $http, $io
 	
 });
 
-app.controller('TicketController', function($scope,$rootScope, $state, $http, $ionicPopup, $rootScope, $ionicViewService, $ionicNavBarDelegate,$sce) {
+app.controller('TicketController', function($scope,$rootScope, $state, $http, $ionicPopup, $rootScope, $ionicViewService, $ionicNavBarDelegate,$sce,$ionicLoading,$stateParams) {
     
+	$scope.tickets = {};
+	
 	$scope.goBack = function() {
         $state.go('events');
     };
+	
+	$ionicLoading.show({
+		template: '<i class="icon ion-loading-c"></i>'
+	});
     
-    $scope.ticket = $sce.trustAsResourceUrl("http://www.dev.tixbox.co/app/mytickets/861415891326?email=kpchamy.php@gmail.com&password=123456")
+		
+    
+	
+	
+	$scope.ticket_id = $stateParams.ticket_id;
+	if($scope.ticket_id)
+	{
+		$ionicLoading.hide();
+		$scope.ticket = $sce.trustAsResourceUrl(basepath +"app/mytickets/"+$scope.ticket_id+"?email="+$rootScope.user.email+"&password="+$rootScope.user.password);		
+		
+	}else{	
+
+			$http({
+				method: 'jsonp',
+				url: basepath + 'app/mytickets?callback=JSON_CALLBACK',
+				params: {
+					"email": $rootScope.user.email,		
+					"password": $rootScope.user.password		
+				}
+			}).success(function(data, status, header, config) {
+				
+				$ionicLoading.hide();
+				$scope.tickets = data;
+				
+			}).error(function(data, status, header, config) {
+				$ionicLoading.hide();
+				var alertPopup = $ionicPopup.alert({
+					title: 'Network Error',
+					template: 'Please check data connection'
+				});
+			});	
+	}
+	
 	
 });
 
