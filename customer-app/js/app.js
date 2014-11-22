@@ -104,6 +104,19 @@ app.config(function($stateProvider, $urlRouterProvider) {
         controller: 'TicketController'
     });
 	
+	$stateProvider.state('wishlist', {
+        url: '/wishlist',
+        templateUrl: 'wishlist.html',
+        controller: 'WishlistController'
+    });
+	
+	$stateProvider.state('wallet', {
+        url: '/wallet',
+        templateUrl: 'wallet.html',
+        controller: 'WalletController'
+    });
+	
+	
 });
 
 app.controller('AppController', function($rootScope, $scope, $state, $http, $ionicPopup, $rootScope, $ionicViewService, $ionicNavBarDelegate,$ionicSideMenuDelegate) {
@@ -160,6 +173,87 @@ app.controller('LoginController', function($scope,$rootScope, $state, $http, $io
     $scope.goBack = function() {
         $state.go('events');
     };
+	
+	
+});
+
+
+
+
+
+app.controller('WishlistController', function($scope,$rootScope, $state, $http, $ionicPopup, $rootScope, $ionicViewService, $ionicNavBarDelegate,$ionicLoading,$stateParams) {
+
+	$scope.wishlist = {};
+
+    $scope.goBack = function() {
+        $state.go('events');
+    };
+	
+	
+	$ionicLoading.show({
+		template: '<i class="icon ion-loading-c"></i>'
+	});
+	
+	
+	$http({
+		method: 'jsonp',
+		url: basepath + 'app/mytickets?callback=JSON_CALLBACK',
+		params: {
+			"email": $rootScope.user.email,		
+			"password": $rootScope.user.password		
+		}
+	}).success(function(data, status, header, config) {
+		
+		$ionicLoading.hide();
+		$scope.wishlist = data;
+		
+	}).error(function(data, status, header, config) {
+		$ionicLoading.hide();
+		var alertPopup = $ionicPopup.alert({
+			title: 'Network Error',
+			template: 'Please check data connection'
+		});
+	});	
+	
+	
+	
+});
+
+
+
+app.controller('WalletController', function($scope,$rootScope, $state, $http, $ionicPopup, $rootScope, $ionicViewService, $ionicNavBarDelegate,$ionicLoading,$stateParams) {
+
+	$scope.wallet = {};
+
+    $scope.goBack = function() {
+        $state.go('events');
+    };
+	
+	
+	$ionicLoading.show({
+		template: '<i class="icon ion-loading-c"></i>'
+	});
+	
+	$http({
+		method: 'jsonp',
+		url: basepath + 'app/profile/mywallet?callback=JSON_CALLBACK',
+		params: {
+			"email": $rootScope.user.email,		
+			"password": $rootScope.user.password		
+		}
+	}).success(function(data, status, header, config) {
+		
+		$ionicLoading.hide();
+		$scope.wallet = data;
+		
+	}).error(function(data, status, header, config) {
+		$ionicLoading.hide();
+		var alertPopup = $ionicPopup.alert({
+			title: 'Network Error',
+			template: 'Please check data connection'
+		});
+	});	
+	
 	
 	
 });
