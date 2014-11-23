@@ -66,31 +66,7 @@ app.config(function($stateProvider, $urlRouterProvider) {
         templateUrl: 'profile.html',
         controller: 'ProfileController'
     });
-	
-	$stateProvider.state('profile-edit', {
-        url: '/profile/edit',
-        templateUrl: 'profile-edit.html',
-        controller: 'ProfileController'
-    });
-	
-	
-	$stateProvider.state('profile-wallet', {
-        url: '/profile/wallet',
-        templateUrl: 'profile-wallet.html',
-        controller: 'ProfileController'
-    });
-	
-	$stateProvider.state('profile-ticket', {
-        url: '/profile/ticket',
-        templateUrl: 'profile-ticket.html',
-        controller: 'ProfileController'
-    });
-	
-	$stateProvider.state('profile-wishlist', {
-        url: '/profile/wishlist',
-        templateUrl: 'profile-wishlist.html',
-        controller: 'ProfileController'
-    });
+
 	
 	$stateProvider.state('tickets', {
         url: '/tickets',
@@ -177,6 +153,41 @@ app.controller('LoginController', function($scope,$rootScope, $state, $http, $io
 	
 });
 
+
+app.controller('ProfileController', function($scope, $state, $http, $ionicPopup, $rootScope, $ionicViewService, $ionicNavBarDelegate,$ionicLoading) {
+   
+   $scope.profile = {};
+
+   $scope.goBack = function() {
+        $state.go('events');
+    };
+	
+	$ionicLoading.show({
+		template: '<i class="icon ion-loading-c"></i>'
+	});
+	
+	$http({
+		method: 'jsonp',
+		url: basepath + 'app/profile/modify?callback=JSON_CALLBACK',
+		params: {
+			"email": $rootScope.user.email,		
+			"password": $rootScope.user.password		
+		}
+	}).success(function(data, status, header, config) {
+		
+		$ionicLoading.hide();
+		$scope.profile = data;
+		console.log($scope.profile);
+		
+	}).error(function(data, status, header, config) {
+		$ionicLoading.hide();
+		var alertPopup = $ionicPopup.alert({
+			title: 'Network Error',
+			template: 'Please check data connection'
+		});
+	});
+	
+});
 
 
 
@@ -572,10 +583,4 @@ app.controller('ReceiptController', function($scope, $state, $http, $ionicPopup,
     };
 });
 
-
-app.controller('ProfileController', function($scope, $state, $http, $ionicPopup, $rootScope, $ionicViewService, $ionicNavBarDelegate) {
-    $scope.goBack = function() {
-        $state.go('events');
-    };
-});
 
