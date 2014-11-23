@@ -217,7 +217,7 @@ app.controller('WishlistController', function($scope,$rootScope, $state, $http, 
 		
 		$ionicLoading.hide();
 		$scope.wishlist = data;
-		
+		console.log($scope.wishlist);
 	}).error(function(data, status, header, config) {
 		$ionicLoading.hide();
 		var alertPopup = $ionicPopup.alert({
@@ -247,7 +247,7 @@ app.controller('WalletController', function($scope,$rootScope, $state, $http, $i
 	
 	$http({
 		method: 'jsonp',
-		url: basepath + 'app/profile/mywallet?callback=JSON_CALLBACK',
+		url: basepath + 'app/account/wallet?callback=JSON_CALLBACK',
 		params: {
 			"email": $rootScope.user.email,		
 			"password": $rootScope.user.password		
@@ -256,6 +256,7 @@ app.controller('WalletController', function($scope,$rootScope, $state, $http, $i
 		
 		$ionicLoading.hide();
 		$scope.wallet = data;
+		console.log($scope.wallet);
 		
 	}).error(function(data, status, header, config) {
 		$ionicLoading.hide();
