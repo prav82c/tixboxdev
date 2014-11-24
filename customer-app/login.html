@@ -8,15 +8,17 @@
 </ion-header-bar>
 <ion-view title="Login">
 	<ion-content>
-	<div class="list">
-	<label class="item item-input">
-		<span class="input-label">Username</span>
-		<input type="text">
-	</label>
-	<label class="item item-input">
-		<span class="input-label">Password</span>
-		<input type="password">
-	</label>
-	</div>	
+    <div class="list list-inset">
+		<label class="item item-input">
+		<input type="text" placeholder="Email" ng-model="user.email" value="">
+		</label>
+		<label class="item item-input">
+		<input type="password" placeholder="Password" ng-model="user.password" value="">				
+		</label>
+		</div>
+		<div class="padding">
+		<button class="button button-block button-large button-assertive" class="button" ng-click="onButton1Click(user)">Login</button>
+		</div>
+    </div>
 	</ion-content>          
 </ion-view>

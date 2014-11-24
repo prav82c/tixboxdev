@@ -97,11 +97,24 @@ app.config(function($stateProvider, $urlRouterProvider) {
 
 app.controller('AppController', function($rootScope, $scope, $state, $http, $ionicPopup, $rootScope, $ionicViewService, $ionicNavBarDelegate,$ionicSideMenuDelegate) {
 
+
+	var email = window.localStorage.getItem("email");
+    var password = window.localStorage.getItem("password");
+
 	$rootScope.event = {};//Empty on loadding
 	$rootScope.events = {};//Empty on loadding
-	$rootScope.user = {};
+	
+	$rootScope.user = {};//User Details
+	$rootScope.login = {};//Login Details
 	$rootScope.user.email = "kpchamy.php@gmail.com";
 	$rootScope.user.password = "123456";
+	$rootScope.user.session_id = "";
+	
+	if(email && password)
+	{
+		$rootScope.user.email = email;
+		$rootScope.user.password = password;		
+	}
 	
 	
 	$rootScope.cart = [];
@@ -110,14 +123,14 @@ app.controller('AppController', function($rootScope, $scope, $state, $http, $ion
 		
 	$scope.showProfile = function() {
 		
-		if($rootScope.user.session){
+		if($rootScope.user.session_id){
 			
 			$ionicSideMenuDelegate.toggleRight();
 			
 		}else {
 		
-			//$state.go('login');
-			$ionicSideMenuDelegate.toggleRight();
+			$state.go('login');
+			//$ionicSideMenuDelegate.toggleRight();
 		}
 	};
 	
@@ -127,28 +140,109 @@ app.controller('AppController', function($rootScope, $scope, $state, $http, $ion
 	
 });
 
-app.controller('SplashController', function($scope, $state, $http, $ionicPopup, $rootScope, $ionicViewService, $ionicNavBarDelegate) {
+app.controller('SplashController', function($scope,$rootScope,$state, $http, $ionicPopup, $rootScope, $ionicViewService, $ionicNavBarDelegate,$ionicLoading) {
     
-	$rootScope.events = {};//Empty on loadding
+		$rootScope.events = {};//Empty on loadding
 	
-	setTimeout(function(){
-		$state.go('events');
-	}, 3000);
-	
-	
-	$scope.goBack = function() {
-        $state.go('events');
-    };
+		setTimeout(function(){
+			$state.go('events');		
+		}, 3000);
+		
+		$scope.goBack = function() {
+			$state.go('events');
+		};
+
+		$http({
+			method: 'jsonp',
+			url: basepath + 'applogin?callback=JSON_CALLBACK',
+			params: {"email": $scope.user.email, "password": $scope.user.password}
+		}).success(function(data, status, header, config) {
+		$ionicLoading.hide();
+		if (data.error == 0)
+		{
+			
+		} else {
+
+			//Local Storage
+			window.localStorage.setItem("email", $scope.user.email);
+			window.localStorage.setItem("password", $scope.user.password);
+			
+			$rootScope.login = data;
+			$rootScope.user.session_id = $scope.login.session_id;
+			console.log("Session:"+$rootScope.user.session_id);
+			//Redirect to events page
+			$state.go('events');
+		}
+
+		}).error(function(data, status, header, config) {
+			$ionicLoading.hide();
+			var alertPopup = $ionicPopup.alert({
+				title: 'Network Error',
+				template: 'Please check data connection'
+			});
+		});
 	
 });
 
 
-app.controller('LoginController', function($scope,$rootScope, $state, $http, $ionicPopup, $rootScope, $ionicViewService, $ionicNavBarDelegate) {
+app.controller('LoginController', function($scope,$rootScope, $state, $http, $ionicPopup, $rootScope, $ionicViewService, $ionicNavBarDelegate,$ionicLoading) {
 
+	$scope.login = {};
 
-    $scope.goBack = function() {
-        $state.go('events');
-    };
+	$scope.goBack = function() {
+		$state.go('events');
+	};
+	
+
+	$scope.onButton1Click = function(user) {
+		
+		$ionicLoading.show({
+			template: '<i class="icon ion-loading-c"></i>'
+		});
+		
+		
+		$http({
+			method: 'jsonp',
+			url: basepath + 'applogin?callback=JSON_CALLBACK',
+			params: {"email": $scope.user.email, "password": $scope.user.password}
+		}).success(function(data, status, header, config) {
+		$ionicLoading.hide();
+		if (data.error == 0)
+		{
+			var alertPopup = $ionicPopup.alert({
+				title: 'Login Failed',
+				template: 'Invalid Credentials'
+			});
+			alertPopup.then(function(res) {
+				$scope.user.email = "";
+				$scope.user.password = "";
+			});
+
+		} else {
+
+			//Local Storage
+			window.localStorage.setItem("email", $scope.user.email);
+			window.localStorage.setItem("password", $scope.user.password);
+			
+			$scope.login = data;
+			$rootScope.login = $scope.login;
+			$rootScope.user.session_id = $scope.login.session_id;
+			console.log("Login Session:"+$rootScope.user.session_id);
+			//Redirect to events page
+			$state.go('events');
+		}
+
+		}).error(function(data, status, header, config) {
+			$ionicLoading.hide();
+			var alertPopup = $ionicPopup.alert({
+				title: 'Network Error',
+				template: 'Please check data connection'
+			});
+		});
+
+	};
+	
+	
 	
 	
 });
@@ -574,10 +668,13 @@ app.controller('CartController', function($scope, $rootScope, $state, $http, $io
     };
 });
 
-app.controller('CheckoutController', function($scope, $state, $http, $ionicPopup, $rootScope, $ionicViewService, $ionicNavBarDelegate) {
+app.controller('CheckoutController', function($scope, $state, $http, $ionicPopup, $rootScope, $ionicViewService, $ionicNavBarDelegate,$sce) {
     $scope.goBack = function() {
         $state.go('events');
     };
+	
+		$scope.checkout = $sce.trustAsResourceUrl(basepath +"app/cart?domain="+document.domain+"&email="+$rootScope.user.email+"&password="+$rootScope.user.password);	
+	
 });
 
 app.controller('ReceiptController', function($scope, $state, $http, $ionicPopup, $rootScope, $ionicViewService, $ionicNavBarDelegate) {
