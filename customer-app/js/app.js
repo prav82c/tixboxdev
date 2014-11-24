@@ -672,7 +672,7 @@ app.controller('CheckoutController', function($scope, $state, $http, $ionicPopup
         $state.go('events');
     };
 	
-		$scope.checkout = $sce.trustAsResourceUrl(basepath +"app/cart?amount=1&&email="+$rootScope.user.email+"&password="+$rootScope.user.password);	
+	$scope.checkout = $sce.trustAsResourceUrl(basepath +"app/checkout?amount=1&&email="+$rootScope.user.email+"&password="+$rootScope.user.password);	
 	
 });
 
@@ -681,5 +681,6 @@ app.controller('ReceiptController', function($scope, $state, $http, $ionicPopup,
         $state.go('events');
     };
 });
+
 
 
