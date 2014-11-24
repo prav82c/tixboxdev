@@ -672,7 +672,7 @@ app.controller('CheckoutController', function($scope, $state, $http, $ionicPopup
         $state.go('events');
     };
 	
-		$scope.checkout = $sce.trustAsResourceUrl(basepath +"app/cart?domain="+document.domain+"&email="+$rootScope.user.email+"&password="+$rootScope.user.password);	
+		$scope.checkout = $sce.trustAsResourceUrl(basepath +"app/cart?amount=1&&email="+$rootScope.user.email+"&password="+$rootScope.user.password);	
 	
 });
 
