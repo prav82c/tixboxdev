@@ -328,7 +328,6 @@ app.controller('WishlistController', function($scope,$rootScope, $state, $http, 
 
 app.controller('WalletController', function($scope,$rootScope, $state, $http, $ionicPopup, $rootScope, $ionicViewService, $ionicNavBarDelegate,$ionicLoading,$stateParams) {
 
-	getBasepath();
 	
 	$scope.wallet = {};
 
