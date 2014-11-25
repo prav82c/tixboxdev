@@ -660,7 +660,7 @@ app.controller('CartController', function($scope, $rootScope, $state, $http, $io
 		
 	});
 	
-	
+	console.log($rootScope.cart);
 	
     $scope.goBack = function() {
         $state.go('events');
@@ -672,7 +672,7 @@ app.controller('CheckoutController', function($scope, $state, $http, $ionicPopup
         $state.go('events');
     };
 	
-	$scope.checkout = $sce.trustAsResourceUrl(basepath +"app/checkout?amount=1&&email="+$rootScope.user.email+"&password="+$rootScope.user.password);	
+	$scope.checkout = $sce.trustAsResourceUrl(basepath +"app/wallet/checkout?amount=1&&email="+$rootScope.user.email+"&password="+$rootScope.user.password);	
 	
 });
 
