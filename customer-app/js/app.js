@@ -672,7 +672,13 @@ app.controller('CheckoutController', function($scope, $state, $http, $ionicPopup
         $state.go('events');
     };
 	
-	$scope.checkout = $sce.trustAsResourceUrl(basepath +"app/wallet/checkout?amount=1&&email="+$rootScope.user.email+"&password="+$rootScope.user.password);	
+	
+	var path = document.location.origin+document.location.pathname; 
+	console.log(document.location);
+	console.log(path);
+	$scope.checkout = $sce.trustAsResourceUrl(basepath +"app/wallet/checkout?path="+path+"&amount=1&&email="+$rootScope.user.email+"&password="+$rootScope.user.password);	
+	
+	
 	
 });
 
