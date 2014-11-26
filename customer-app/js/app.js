@@ -326,44 +326,7 @@ app.controller('WishlistController', function($scope,$rootScope, $state, $http, 
 
 
 
-app.controller('WalletController', function($scope,$rootScope, $state, $http, $ionicPopup, $rootScope, $ionicViewService, $ionicNavBarDelegate,$ionicLoading,$stateParams) {
 
-	
-	$scope.wallet = {};
-
-    $scope.goBack = function() {
-        $state.go('events');
-    };
-	
-	
-	$ionicLoading.show({
-		template: '<i class="icon ion-loading-c"></i>'
-	});
-	
-	$http({
-		method: 'jsonp',
-		url: basepath + 'app/account/wallet?callback=JSON_CALLBACK',
-		params: {
-			"email": $rootScope.user.email,		
-			"password": $rootScope.user.password		
-		}
-	}).success(function(data, status, header, config) {
-		
-		$ionicLoading.hide();
-		$scope.wallet = data;
-		console.log($scope.wallet);
-		
-	}).error(function(data, status, header, config) {
-		$ionicLoading.hide();
-		var alertPopup = $ionicPopup.alert({
-			title: 'Network Error',
-			template: 'Please check data connection'
-		});
-	});	
-	
-	
-	
-});
 
 app.controller('TicketController', function($scope,$rootScope, $state, $http, $ionicPopup, $rootScope, $ionicViewService, $ionicNavBarDelegate,$sce,$ionicLoading,$stateParams) {
     
@@ -577,7 +540,7 @@ app.controller('EventPageController', function($scope,$rootScope,$state, $http, 
 	}
 	
 	$scope.buy = function() {
-        $state.go('cart');		 
+        $state.go('cart');		
     };
 	
 	
@@ -628,15 +591,14 @@ app.controller('EventDetailsController', function($scope,$rootScope, $state, $ht
 
 
 
-app.controller('CartController', function($scope, $rootScope, $state, $http, $ionicPopup, $rootScope, $ionicViewService, $ionicNavBarDelegate,$filter) {
+app.controller('CartController', function($scope, $rootScope, $state, $http, $ionicPopup, $rootScope, $ionicViewService, $ionicNavBarDelegate,$filter,$sce,$ionicLoading,$stateParams) {
 	
 	$scope.total = $rootScope.total;
 	$scope.events = $rootScope.events;//Get all events
 	$scope.cart = $rootScope.cart;//Get all cart
+	$scope.cartpage = "";//URL for cart page
 	
 	$scope.items = [];
-	
-	//console.log($rootScope.events);
 	
 	angular.forEach($scope.cart, function(value, key) {
 		var found = $filter('filter')($scope.events,function(data){
@@ -646,6 +608,7 @@ app.controller('CartController', function($scope, $rootScope, $state, $http, $io
 		console.log(found);
 		
 		$scope.items.push({
+			"event_date_id":140,
 			"event_id":value.event_id,
 			"event_ticket_id":value.event_ticket_id,
 			"price":value.price,
@@ -655,12 +618,33 @@ app.controller('CartController', function($scope, $rootScope, $state, $http, $io
 			"image":found[0].Event.cart
 			}	
 		);
+	});	
+	
+	//console.log($rootScope.cart);
+	
+	$http({
+		method: 'jsonp',
+		url: basepath + 'app/cart/add?callback=JSON_CALLBACK',
+		params: {
+			"session_id": $rootScope.user.session_id,
+			"cart": $scope.items,
+			"email": $rootScope.user.email,		
+			"password": $rootScope.user.password		
+		}
+	}).success(function(data, status, header, config) {
+		
+		alert("Loadded In Car");
+		$scope.cartpage = $sce.trustAsResourceUrl(basepath +"app/cart?session_id="+$rootScope.user.session_id+"&email="+$rootScope.user.email+"&password="+$rootScope.user.password);	
 		
 		
-		
+	}).error(function(data, status, header, config) {
+		$ionicLoading.hide();
+		var alertPopup = $ionicPopup.alert({
+			title: 'Network Error',
+			template: 'Please check data connection'
+		});
 	});
 	
-	console.log($rootScope.cart);
 	
     $scope.goBack = function() {
         $state.go('events');
@@ -669,20 +653,57 @@ app.controller('CartController', function($scope, $rootScope, $state, $http, $io
 	
 });
 
-app.controller('CheckoutController', function($scope, $state, $http, $ionicPopup, $rootScope, $ionicViewService, $ionicNavBarDelegate,$sce) {
+
+app.controller('WalletController', function($scope,$rootScope, $state, $http, $ionicPopup, $rootScope, $ionicViewService, $ionicNavBarDelegate,$ionicLoading,$stateParams) {
+
+	
+	$scope.wallet = {};
+	$scope.wallet_amount = {};
+
     $scope.goBack = function() {
         $state.go('events');
     };
 	
 	
+	$ionicLoading.show({
+		template: '<i class="icon ion-loading-c"></i>'
+	});
+	
+	$http({
+		method: 'jsonp',
+		url: basepath + 'app/account/wallet?callback=JSON_CALLBACK',
+		params: {
+			"email": $rootScope.user.email,		
+			"password": $rootScope.user.password		
+		}
+	}).success(function(data, status, header, config) {
+		
+		$ionicLoading.hide();
+		$scope.wallet = data;
+		console.log($scope.wallet);
+		
+	}).error(function(data, status, header, config) {
+		$ionicLoading.hide();
+		var alertPopup = $ionicPopup.alert({
+			title: 'Network Error',
+			template: 'Please check data connection'
+		});
+	});	
+	
+	
+	
+});
+
+app.controller('CheckoutController', function($scope, $state, $http, $ionicPopup, $rootScope, $ionicViewService, $ionicNavBarDelegate,$sce) {
+
+    $scope.goBack = function() {
+        $state.go('wallet');
+    };
+	
+	var amount = $stateParams.amount;
 	var path = document.location.origin+document.location.pathname; 
-	console.log(document.location);
-	console.log(path);
 	
-	$scope.checkout = $sce.trustAsResourceUrl(basepath +"app/wallet/checkout?path="+path+"&amount=1&&email="+$rootScope.user.email+"&password="+$rootScope.user.password);	
-	
-	//$scope.checkout = $sce.trustAsResourceUrl("http://192.168.10.3/sendback.html");	
-	
+	$scope.checkout = $sce.trustAsResourceUrl(basepath +"app/wallet/checkout?path="+path+"&amount="+amount+"&&email="+$rootScope.user.email+"&password="+$rootScope.user.password);		
 	
 	
 });
