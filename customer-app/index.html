@@ -8,13 +8,30 @@
 <link href='https://fonts.googleapis.com/css?family=Roboto:400,700' rel='stylesheet' type='text/css'>
 <link href="lib/ionic/css/ionic.css" rel="stylesheet">
 <link href="lib/ionic/css/style.css" rel="stylesheet">
-<script src="http://www.dev.tixbox.co/js/app/app.js"></script>
+<script src="cordova.js"></script>
 <script src="lib/ionic/js/ionic.bundle.js"></script>
 <script src="js/app.js"></script>
 <script src="lib/ionic/js/ionic.bundle.min.js"></script>
 <script src="lib/ionic/js/underscore.js"></script>
+<script>
+document.addEventListener("deviceready",function() {
+   window.addEventListener("message", function(event) {
+        if (event.data == "redirect_wallet") {
+	        document.location.href= "#/wallet";
+        }else if(event.data == "redirect_events"){
+		
+			document.location.href= "#/events";
+			
+		}else{
+			document.location.href= "#/events";
+		}
+    }, false);
+
+}, false);
+
+</script>
 </head>
-<body ng-controller="AppController">
+<body id="tixboxapp" ng-controller="AppController">
 
 
 <ion-side-menus>	

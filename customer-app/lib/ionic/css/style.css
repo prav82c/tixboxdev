@@ -279,7 +279,12 @@ font-size: 14px;
 	  color:green;
   }
   
-  .bigico.fail {
-	  font-size:180px;
-	  color:red;
-  }
+.bigico.fail {
+  font-size:180px;
+  color:red;
+}
+  
+.iframe-issue {
+-webkit-overflow-scrolling: touch !important;
+overflow: scroll !important;
+}

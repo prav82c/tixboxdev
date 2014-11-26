@@ -665,6 +665,8 @@ app.controller('CartController', function($scope, $rootScope, $state, $http, $io
     $scope.goBack = function() {
         $state.go('events');
     };
+	
+	
 });
 
 app.controller('CheckoutController', function($scope, $state, $http, $ionicPopup, $rootScope, $ionicViewService, $ionicNavBarDelegate,$sce) {
@@ -676,7 +678,10 @@ app.controller('CheckoutController', function($scope, $state, $http, $ionicPopup
 	var path = document.location.origin+document.location.pathname; 
 	console.log(document.location);
 	console.log(path);
+	
 	$scope.checkout = $sce.trustAsResourceUrl(basepath +"app/wallet/checkout?path="+path+"&amount=1&&email="+$rootScope.user.email+"&password="+$rootScope.user.password);	
+	
+	//$scope.checkout = $sce.trustAsResourceUrl("http://192.168.10.3/sendback.html");	
 	
 	
 	
