@@ -31,6 +31,12 @@ h1.title {
 	font-size:16px;
 	font-weight:bold;
 	color:#fff;
+	text-transform:uppercase;
+}
+
+.icon.ion-android-timer {
+	font-size:30px;
+	line-height:30px;
 }
 
 .eventTitle {
@@ -55,7 +61,7 @@ h1.title {
 	/*  border-radius: 5px 5px 5px 5px;
 	-moz-border-radius: 5px 5px 5px 5px;
 	-webkit-border-radius: 5px 5px 5px 5px; */
-	margin:0px; 
+	margin:10px; 
 }
 .eveListItem:last-child {
 	margin-bottom:0px;
@@ -63,6 +69,22 @@ h1.title {
 
 .eveDets {
 	color:#777;
+}
+
+.eveListItem .listbuybut {
+	margin:0!important;
+}
+
+.locico {
+	border:1px solid #b2b2b2;
+	width:30px;
+	height:30px;
+	display:inline-block;
+	margin-right:5px;
+	border-radius:50%;
+	text-align:center;
+	vertical-align:middle;
+	line-height:30px;
 }
 
 .eveImage img{
@@ -120,6 +142,8 @@ border-color: #C13B39;
 background-color: #C13B39;
 color: #fff;
 }
+
+
 
 .text-center {
 	text-align:center;

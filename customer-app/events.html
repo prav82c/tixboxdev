@@ -3,22 +3,23 @@
 		<button class="button button-icon icon ion-navicon" ng-click="showCategory()"></button>
 		<img src="lib/ionic/img/logo_tb_small.png" alt="tixbox.com">
 	  </div>
+      <h1 class="title title-left"></h1>
 	  <div class="buttons">
 		<button class="button button-icon icon ion-ios7-cart" ng-if="cart.length >= 1" ng-click="showCart()"></button>
-		<button class="button button-icon icon ion-ios7-person" ng-click="showProfile()"></button>
+		<button class="button button-icon icon ion-ios7-gear" ng-click="showProfile()"></button>
 	  </div>
 </ion-header-bar>
 	
 <ion-view title="Event">
 	<ion-content class="praveen">
 			<div class="eveListItem" ng-repeat="data in events">
-			<div class="eveImage"> <img src="{{data.Event.image}}"> </div>
+			<div class="eveImage"> <a href="#/event/{{data.Event.event_id}}"><img src="{{data.Event.image}}"></a> </div>
 			<div class="row eveDets">
 				  <div class="col col-80">
 					<h2 class="home_eventTitle">{{data.Event.title}}</h2>
 					<i class="icon ion-calendar"></i> &nbsp;<span>{{data.Event.date}}</span>
 				  </div>
-				  <div class="col"><a class="button button-block button-assertive" href="#/event/{{data.Event.event_id}}">BUY</a></div>
+				  <div class="col"><a class="button button-block button-assertive listbuybut" href="#/event/{{data.Event.event_id}}">BUY</a></div>
 				</div>
 			</div>
 			

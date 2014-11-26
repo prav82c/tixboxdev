@@ -29,10 +29,10 @@
 				<h2 class="detTabHead_new">Event Details</h2>
 				<div class="tinys_wrapper"></div>
 				</div>
-			<p><i class="icon ion-calendar"></i> <span>{{data.event.start_date}}</span></p>
-			<p><i class="icon ion-ios7-location"></i> <span>{{data.event.event_address.address}}</span></p>
-			<p><i class="icon ion-star"></i> <span>{{data.event.event_address.city_id}}</span></p>
-			<div>
+			<p><span class="locico"><i class="icon ion-calendar"></i></span> <span>{{data.event.start_date}}</span></p>
+			<p><span class="locico"><i class="icon ion-ios7-location"></i></span> <span>{{data.event.event_address.address}}</span></p>
+			<p><span class="locico"><i class="icon ion-map"></i></span> <span>{{data.event.event_address.city_id}}</span></p>
+			<div class="mttty">
 			<a href="#/event/{{data.event.event_id}}/details" class="button icon-right ion-chevron-right button-outline button-block button-stable">
 			  See More Details
 			</a>
