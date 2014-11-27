@@ -670,12 +670,25 @@ app.controller('WalletController', function($scope,$rootScope, $state, $http, $i
 
 	
 	$scope.wallet = {};
-	$scope.wallet_amount = {};
+	$scope.credit = {};
 
     $scope.goBack = function() {
         $state.go('events');
     };
 	
+	$scope.updateWallet = function(){
+		if($scope.credit.amount >= 1)
+		{
+			$state.go('checkout',{amount:$scope.credit.amount});
+			
+		}else{
+			var alertPopup = $ionicPopup.alert({
+				title: 'Amount Recharge',
+				template: 'Please check input amount'
+			});
+		}
+		return false;
+	};
 	
 	$ionicLoading.show({
 		template: '<i class="icon ion-android-timer"></i><br/>LOADING'
@@ -706,7 +719,7 @@ app.controller('WalletController', function($scope,$rootScope, $state, $http, $i
 	
 });
 
-app.controller('CheckoutController', function($scope, $state, $http, $ionicPopup, $rootScope, $ionicViewService, $ionicNavBarDelegate,$sce) {
+app.controller('CheckoutController', function($scope, $state, $http, $ionicPopup, $rootScope, $ionicViewService, $ionicNavBarDelegate,$sce,$stateParams) {
 
     $scope.goBack = function() {
         $state.go('wallet');

@@ -20,13 +20,13 @@
 				
 				<label class="item item-input item-floating-label">
 					<span class="input-label">Amount</span>
-					<input type="text" placeholder="Enter Amount to Add">
+					<input type="text" placeholder="Enter Amount to Add" ng-model="credit.amount">
 				</label>
 				
 				
-				<a href="#checkout" class="button button-block button-assertive">
+				<button class="button button-block button-assertive" ng-click="updateWallet();">
 				  Add Amount to Wallet
-				</a>
+				</button>
 		</div>
 	</ion-content>          
 </ion-view>
