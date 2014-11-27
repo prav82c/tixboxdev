@@ -1,38 +1,32 @@
 <ion-view title="Login">
-	<ion-content>
-    			
-    <div class="padthy">
-
-        <div class="text-center mbthy"><img src="lib/ionic/img/logo.png" alt="tixbox.com"></div>
-        
-       
-		<label class="item item-input">
-		<input type="text" placeholder="Email" ng-model="user.email" value="">
-		</label>
-		<label class="item item-input">
-		<input type="password" placeholder="Password" ng-model="user.password" value="">				
-		</label>
-        
-        
-        <div class="row np">
-				  <div class="col" style="padding-left:0;">
-                  	<button class="button button-block button-assertive" class="button" ng-click="onButton1Click(user)">LOGIN</button>
-                  </div>
-                  <div class="col" style="padding-right:0;">
-                  	<button class="button button-block button-outline button-default" class="button" ng-click="onButton1Click(user)">SIGNUP</button>
-                  </div>
+  <ion-content>
+  	
+    <div class="loginbox"><div class="text-center"><img src="lib/ionic/img/logo.png" alt="tixbox.com" height="50" class="mttty mbtty"><!--<hr class="light">--></div>
+      <div class=""><label class="item item-input item-floating-label"> <span class="input-label">EMAIL</span>
+        <input type="text" placeholder="EMAIL" ng-model="user.email" value="">
+      </label>
+      <label class="item item-input item-floating-label"> <span class="input-label">PASSWORD</span>
+        <input type="password" placeholder="PASSWORD" ng-model="user.password" value="">
+      </label>
+      </div>
+      <div class="row np">
+        <div class="col" style="padding-left:0;">
+          <button class="button button-block button-assertive button-small" class="button" ng-click="onButton1Click(user)">
+          LOGIN
+          </button>
         </div>
-        <div class="text-center mtten mbtty"><a href="#">FORGOT PASSWORD</a></div>
-        <hr class="light">
-        		  
-                  	<button class="button button-block button-fb" class="button" ng-click="onButton1Click(user)">LOGIN WITH FACEBOOK</button>
-                 
-        <hr class="light">
-		</div>
-		
-		
-		
-        
+        <div class="col" style="padding-right:0;">
+          <button class="button button-block button-outline button-light button-small" class="button" ng-click="">
+          SIGNUP
+          </button>
+        </div>
+      </div>
+      <div class="text-center mtten mbtty"><a href="" class="linkW forgPwd">FORGOT PASSWORD</a></div>
+      <!--<hr class="light">-->
+      
+      <button class="button button-block button-fb button-small" class="button" ng-click="">
+      				<i class="icon ion-social-facebook"></i>&nbsp;&nbsp; LOGIN WITH FACEBOOK
+      </button>
     </div>
-	</ion-content>          
+  </ion-content>
 </ion-view>

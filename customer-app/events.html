@@ -1,34 +1,29 @@
 <ion-header-bar align-title="left" class="bar-assertive">
-	  <div class="buttons">
-		<button class="button button-icon icon ion-navicon" ng-click="showCategory()"></button>
-		<img src="lib/ionic/img/logo_tb_small.png" alt="tixbox.com">
-	  </div>
-      <h1 class="title title-left"></h1>
-	  <div class="buttons">
-		<button class="button button-icon icon ion-ios7-cart" ng-if="cart.length >= 1" ng-click="showCart()"></button>
-		<button class="button button-icon icon ion-ios7-gear" ng-click="showProfile()"></button>
-	  </div>
+  <div class="buttons">
+    <button class="button button-icon icon ion-navicon" ng-click="showCategory()"></button>
+    <img src="lib/ionic/img/logo_tb_small.png" alt="tixbox.com"> </div>
+  <h1 class="title title-left"></h1>
+  <div class="buttons">
+    <button class="button button-icon icon ion-ios7-cart" ng-if="cart.length >= 1" ng-click="showCart()"></button>
+    <button class="button button-icon icon ion-ios7-gear" ng-click="showProfile()"></button>
+  </div>
 </ion-header-bar>
-	
 <ion-view title="Event">
-	<ion-content class="praveen">
-			<div class="eveListItem" ng-repeat="data in events">
-			<div class="eveImage"> <a href="#/event/{{data.Event.event_id}}"><img src="{{data.Event.image}}"></a> </div>
-			<div class="row eveDets">
-				  <div class="col col-80">
-					<h2 class="home_eventTitle">{{data.Event.title}}</h2>
-                    <table width="100%" border="0" cellpadding="0" cellspacing="0">
-  <tr>
-    <td width="170" align="left"><i class="icon ion-calendar red"></i> {{data.Event.date}}</td>
-    <td align="left"><i class="icon ion-ios7-location red"></i> {{data.Event.address.city_id}}</td>
-  </tr>
-</table>
-
-					 
-				  </div>
-				  <div class="col"><a class="button button-block button-assertive listbuybut" href="#/event/{{data.Event.event_id}}">BUY</a></div>
-				</div>
-			</div>
-			
-	</ion-content>          
+  <ion-content class="praveen">
+    <div class="eveListItem" ng-repeat="data in events">
+      <div class="eveImage"> <a href="#/event/{{data.Event.event_id}}"><img src="{{data.Event.image}}"></a> </div>
+      <div class="row eveDets">
+        <div class="col col-80">
+          <h2 class="home_eventTitle">{{data.Event.title}}</h2>
+          <table width="100%" border="0" cellpadding="0" cellspacing="0">
+            <tr>
+              <td width="170" align="left"><i class="icon ion-calendar red zico"></i> {{data.Event.date}}</td>
+              <td align="left"><i class="icon ion-ios7-location red zico"></i> {{data.Event.address.city_id}}</td>
+            </tr>
+          </table>
+        </div>
+        <div class="col"><a class="button button-block button-assertive listbuybut" href="#/event/{{data.Event.event_id}}">BUY</a></div>
+      </div>
+    </div>
+  </ion-content>
 </ion-view>

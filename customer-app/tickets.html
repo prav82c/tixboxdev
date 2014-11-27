@@ -11,14 +11,14 @@
 </ion-header-bar>
 <ion-view title="Ticket">
 	<ion-content>
-		<div class="list card">
+		<div class="padtty">
 			<div class="detTabHeadhold">
 				<h2 class="detTabHead_new">My Tickets</h2>
 				<div class="tinys_wrapper"></div>
 			</div>				
 			<a class="item item-icon-right" href="#/ticket/{{data.trans_id}}" ng-repeat="data in tickets">
-			  <h2>{{data.trans_id}}</h2>
-			  <i class="icon ion-printer"></i>
+			  <div>{{data.trans_id}}<br /><span class="small">{{data.created_at}}</span></div>
+			  <i class="icon ion-ios7-arrow-forward"></i>
 			</a>
 		</div>
 	</ion-content>          

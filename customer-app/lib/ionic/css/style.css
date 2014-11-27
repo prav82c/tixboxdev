@@ -95,7 +95,7 @@ top: 50px;
 	color:#777;
 }
 
-.eveDets i.icon{
+.zico {
 	font-size:20px;
 	margin-right:3px;
 }
@@ -268,7 +268,13 @@ height:100%;
 }
 
 ion-content {
-	background:#111;
+	background:#111 url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAQAAAAECAYAAACp8Z5+AAAAHklEQVQIW2NkQAX/GZH4/4FsRpgAmAOSBBFwDkgAAIKuBATRTAAZAAAAAElFTkSuQmCC');
+}
+
+.small {
+	font-size:12px;
+	font-weight:normal;
+	color:#777;
 }
 
 .button-facebook, .button-facebook:hover {
@@ -330,6 +336,22 @@ background-color: #d74b49;
 border-color: #3a5795;
 background-color: #3a5795;
 color:#fff;
+}
+
+
+.loginbox {
+	padding:40px 40px 0 40px;
+	
+}
+
+.linkW {
+	color:#fff;
+	text-decoration:none;
+}
+
+.forgPwd {
+	font-size:12px;
+	color:#555;
 }
 
 
