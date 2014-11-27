@@ -421,13 +421,20 @@ app.controller('EventController', function($scope,$rootScope, $state, $http, $io
 });
 
 app.controller('EventPageController', function($scope,$rootScope,$state, $http, $ionicPopup, $rootScope, $ionicViewService, $ionicNavBarDelegate,$ionicLoading,$stateParams,$sce) {
-
+	
+	$rootScope.cart = [];
 	$scope.data = {};
 	$scope.image = {};
 	$scope.total = 0;
 	$scope.selected = {};
+	$scope.event_date_id = "";
+	$scope.choose = {};
 	
 	//console.log($rootScope.events);
+	
+	$scope.makeChanged = function(){
+		$scope.event_date_id = $scope.choose.event_date.event_date_id;
+	}
 
 	if(Object.keys($rootScope.event).length === 0){	
 
@@ -465,6 +472,8 @@ app.controller('EventPageController', function($scope,$rootScope,$state, $http, 
 				
 			});
 			
+			$scope.choose = $scope.data.event_dates[0];
+			//console.log($scope.data);
 			
 		}).error(function(data, status, header, config) {
 			$ionicLoading.hide();
@@ -492,7 +501,8 @@ app.controller('EventPageController', function($scope,$rootScope,$state, $http, 
 			else if(value.mode == "small") $scope.image.small.push(value.url);
 			
 		});
-			
+		$scope.choose = $scope.data.event_dates[0];
+		
 	}//In Cache
 	
 	$scope.selectBox = function(from,to) {
@@ -518,10 +528,12 @@ app.controller('EventPageController', function($scope,$rootScope,$state, $http, 
 			var price = ticket.attributes.price.value;		
 			var event_ticket_id = ticket.attributes.event_ticket_id.value;
 			var event_id = ticket.attributes.event_id.value;	
-			
+			var event_date_id = $scope.event_date_id;	
+						
 			if(quantity > 0){
 				$rootScope.cart.push(
 					{
+						"event_date_id":event_date_id,
 						"event_id":event_id,
 						"event_ticket_id":event_ticket_id,
 						"price":price,
@@ -605,10 +617,10 @@ app.controller('CartController', function($scope, $rootScope, $state, $http, $io
 			return data.Event.event_id == value.event_id;
 		});
 		//$filter('filter')(foo.results, {id: 1})[0];
-		console.log(found);
+		//console.log(found);
 		
 		$scope.items.push({
-			"event_date_id":140,
+			"event_date_id":value.event_date_id,
 			"event_id":value.event_id,
 			"event_ticket_id":value.event_ticket_id,
 			"price":value.price,
@@ -620,14 +632,14 @@ app.controller('CartController', function($scope, $rootScope, $state, $http, $io
 		);
 	});	
 	
-	//console.log($rootScope.cart);
+	console.log($rootScope.cart);
 	
 	$http({
 		method: 'jsonp',
 		url: basepath + 'app/cart/add?callback=JSON_CALLBACK',
 		params: {
 			"session_id": $rootScope.user.session_id,
-			"cart": $scope.items,
+			"cart": JSON.stringify($scope.items),
 			"email": $rootScope.user.email,		
 			"password": $rootScope.user.password		
 		}
