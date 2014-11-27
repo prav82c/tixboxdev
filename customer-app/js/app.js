@@ -644,10 +644,8 @@ app.controller('CartController', function($scope, $rootScope, $state, $http, $io
 			"password": $rootScope.user.password		
 		}
 	}).success(function(data, status, header, config) {
-		
-		alert("Loadded In Car");
-		$scope.cartpage = $sce.trustAsResourceUrl(basepath +"app/cart?session_id="+$rootScope.user.session_id+"&email="+$rootScope.user.email+"&password="+$rootScope.user.password);	
-		
+
+		$scope.cartpage = $sce.trustAsResourceUrl(basepath +"app/cart?session_id="+$rootScope.user.session_id+"&email="+$rootScope.user.email+"&password="+$rootScope.user.password);			
 		
 	}).error(function(data, status, header, config) {
 		$ionicLoading.hide();
