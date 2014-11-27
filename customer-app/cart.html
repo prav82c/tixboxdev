@@ -10,6 +10,6 @@
 </ion-header-bar>
 <ion-view title="Cart Page">
 	<ion-content>
-		<ion-content scroll="true" overflow-scroll="true" data-tap-disabled="true"><iframe ng-src="{{cartpage}}" style="width:100%;height:100%" data-tap-disabled="true"></iframe></ion-content> 
+		<ion-content scroll="true" overflow-scroll="true" data-tap-disabled="true" ng-if="cartpage"><iframe ng-src="{{cartpage}}" style="width:100%;height:100%" data-tap-disabled="true"></iframe></ion-content> 
 	</ion-content>          
 </ion-view>
