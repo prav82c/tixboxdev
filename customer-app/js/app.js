@@ -197,7 +197,7 @@ app.controller('LoginController', function($scope,$rootScope, $state, $http, $io
 	$scope.onButton1Click = function(user) {
 		
 		$ionicLoading.show({
-			template: '<i class="icon ion-loading-c"></i>'
+			template: '<i class="icon ion-android-timer"></i><br/>LOADING'
 		});
 		
 		
@@ -257,7 +257,7 @@ app.controller('ProfileController', function($scope, $state, $http, $ionicPopup,
     };
 	
 	$ionicLoading.show({
-		template: '<i class="icon ion-loading-c"></i>'
+		template: '<i class="icon ion-android-timer"></i><br/>LOADING'
 	});
 	
 	$http({
@@ -296,7 +296,7 @@ app.controller('WishlistController', function($scope,$rootScope, $state, $http, 
 	
 	
 	$ionicLoading.show({
-		template: '<i class="icon ion-loading-c"></i>'
+		template: '<i class="icon ion-android-timer"></i><br/>LOADING'
 	});
 	
 	
@@ -337,7 +337,7 @@ app.controller('TicketController', function($scope,$rootScope, $state, $http, $i
     };
 	
 	$ionicLoading.show({
-		template: '<i class="icon ion-loading-c"></i>'
+		template: '<i class="icon ion-android-timer"></i><br/>LOADING'
 	});
     
 		
@@ -387,7 +387,7 @@ app.controller('EventController', function($scope,$rootScope, $state, $http, $io
 		
 	
 	$ionicLoading.show({
-		template: '<i class="icon ion-loading-c"></i>'
+		template: '<i class="icon ion-android-timer"></i><br/>LOADING'
 	});
 
 	
@@ -438,7 +438,7 @@ app.controller('EventPageController', function($scope,$rootScope,$state, $http, 
 	if(Object.keys($rootScope.event).length === 0){	
 
 		$ionicLoading.show({
-			template: '<i class="icon ion-loading-c"></i>'
+			template: '<i class="icon ion-android-timer"></i><br/>LOADING'
 		});
 
 		$scope.event_id = $stateParams.event_id;
@@ -677,7 +677,7 @@ app.controller('WalletController', function($scope,$rootScope, $state, $http, $i
 	
 	
 	$ionicLoading.show({
-		template: '<i class="icon ion-loading-c"></i>'
+		template: '<i class="icon ion-android-timer"></i><br/>LOADING'
 	});
 	
 	$http({
