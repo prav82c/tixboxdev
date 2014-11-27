@@ -41,6 +41,19 @@
 			<hr class="light">
 			<div class="evepkgs">
 				<div class="detTabHeadhold">
+					<h2 class="detTabHead_new">Select Date</h2>
+					<div class="tinys_wrapper"></div>
+				</div>
+				<div class="list" ng-if="data.event_dates">
+					<select id="event_date_id" 
+					value="data.event_dates[0]"
+					ng-model="choose.event_date" 
+					ng-options="make.start_date for make in data.event_dates"
+					ng-change="makeChanged(make.event_date_id)">
+					</select>
+				</div>
+				
+				<div class="detTabHeadhold">
 					<h2 class="detTabHead_new">Select Tickets</h2>
 					<div class="tinys_wrapper"></div>
 				</div>
