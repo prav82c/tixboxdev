@@ -421,7 +421,8 @@ app.controller('EventController', function($scope,$rootScope, $state, $http, $io
 });
 
 app.controller('EventPageController', function($scope,$rootScope,$state, $http, $ionicPopup, $rootScope, $ionicViewService, $ionicNavBarDelegate,$ionicLoading,$stateParams,$sce) {
-
+	
+	$rootScope.cart = [];
 	$scope.data = {};
 	$scope.image = {};
 	$scope.total = 0;
