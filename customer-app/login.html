@@ -1,24 +1,38 @@
-<ion-header-bar align-title="left" class="bar-assertive">
-	  <div class="buttons">
-		<button class="button button-icon icon ion-ios7-arrow-back" ng-click="goBack()"></button>
-		<img src="lib/ionic/img/logo_tb_small.png" alt="tixbox.com">
-	  </div>
-	  <h1 class="title">Login</h1>
-	
-</ion-header-bar>
 <ion-view title="Login">
 	<ion-content>
-    <div class="list list-inset">
+    			
+    <div class="padthy">
+
+        <div class="text-center mbthy"><img src="lib/ionic/img/logo.png" alt="tixbox.com"></div>
+        
+       
 		<label class="item item-input">
 		<input type="text" placeholder="Email" ng-model="user.email" value="">
 		</label>
 		<label class="item item-input">
 		<input type="password" placeholder="Password" ng-model="user.password" value="">				
 		</label>
+        
+        
+        <div class="row np">
+				  <div class="col" style="padding-left:0;">
+                  	<button class="button button-block button-assertive" class="button" ng-click="onButton1Click(user)">LOGIN</button>
+                  </div>
+                  <div class="col" style="padding-right:0;">
+                  	<button class="button button-block button-outline button-default" class="button" ng-click="onButton1Click(user)">SIGNUP</button>
+                  </div>
+        </div>
+        <div class="text-center mtten mbtty"><a href="#">FORGOT PASSWORD</a></div>
+        <hr class="light">
+        		  
+                  	<button class="button button-block button-fb" class="button" ng-click="onButton1Click(user)">LOGIN WITH FACEBOOK</button>
+                 
+        <hr class="light">
 		</div>
-		<div class="padding">
-		<button class="button button-block button-large button-assertive" class="button" ng-click="onButton1Click(user)">Login</button>
-		</div>
+		
+		
+		
+        
     </div>
 	</ion-content>          
 </ion-view>
