@@ -1,12 +1,11 @@
 <ion-view title="Login">
 	<ion-content>
     			
-    <div class="padten">
-        <!--<div class="detTabHeadhold">
-            <h2 class="detTabHead_new">Login to Tixbox</h2>
-            <div class="tinys_wrapper"></div>
-        </div>-->
-        <div class="text-center mbthy mttty"><img src="lib/ionic/img/logo.png" alt="tixbox.com"></div>
+    <div class="padthy">
+
+        <div class="text-center mbthy"><img src="lib/ionic/img/logo.png" alt="tixbox.com"></div>
+        
+       
 		<label class="item item-input">
 		<input type="text" placeholder="Email" ng-model="user.email" value="">
 		</label>
@@ -15,20 +14,25 @@
 		</label>
         
         
-        <div class="row">
-				  <div class="col">
-                  	<button class="button button-block button-large11 button-assertive" class="button" ng-click="onButton1Click(user)">LOGIN</button>
+        <div class="row np">
+				  <div class="col" style="padding-left:0;">
+                  	<button class="button button-block button-assertive" class="button" ng-click="onButton1Click(user)">LOGIN</button>
                   </div>
-                  <div class="col">
-                  	<button class="button button-block button-outline button-large11 button-assertive" class="button" ng-click="onButton1Click(user)">SIGNUP</button>
+                  <div class="col" style="padding-right:0;">
+                  	<button class="button button-block button-outline button-default" class="button" ng-click="onButton1Click(user)">SIGNUP</button>
                   </div>
         </div>
-        <div class="text-center mttty mbtty"><a href="#">FORGOT PASSWORD</a></div>
+        <div class="text-center mtten mbtty"><a href="#">FORGOT PASSWORD</a></div>
+        <hr class="light">
+        		  
+                  	<button class="button button-block button-fb" class="button" ng-click="onButton1Click(user)">LOGIN WITH FACEBOOK</button>
+                 
+        <hr class="light">
 		</div>
 		
 		
 		
-        <!--<hr class="light">-->
+        
     </div>
 	</ion-content>          
 </ion-view>

@@ -326,6 +326,12 @@ border-color: #d74b49;
 background-color: #d74b49;
 }
 
+.button-fb,.button.button-fb.active, .button.button-fb.activated {
+border-color: #3a5795;
+background-color: #3a5795;
+color:#fff;
+}
+
 
 /* eventpage str */
 .eventpage img.eveimg{
