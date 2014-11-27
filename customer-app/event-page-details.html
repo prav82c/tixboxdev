@@ -5,9 +5,8 @@
   </div>
   <h1 class="title title-left"></h1>
   <div class="buttons">
-    <button class="button button-icon icon ion-ios7-cart"></button>
-    <button class="button button-icon icon ion-ios7-gear"></button>
-	
+    <button class="button button-icon icon ion-ios7-cart" ng-if="cart.length >= 1" ng-click="showCart()"></button>
+	<button class="button button-icon icon ion-ios7-person" ng-click="showProfile()"></button>
   </div>
 </ion-header-bar>
 <ion-view title="Event Details">
@@ -37,3 +36,5 @@
 			
 		</ion-content>          
 	</ion-view>
+    
+    
