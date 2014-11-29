@@ -25,7 +25,7 @@ app.config(function($stateProvider, $urlRouterProvider) {
     });
 	
 	$stateProvider.state('events-cat', {
-        url: '/events/:cat_id',
+        url: '/events/cat/:category_id',
         templateUrl: 'events.html',
         controller: 'EventController'
     });
@@ -103,6 +103,7 @@ app.controller('AppController', function($rootScope, $scope, $state, $http, $ion
 
 	$rootScope.event = {};//Empty on loadding
 	$rootScope.events = {};//Empty on loadding
+	$rootScope.categories = {};//Empty on loadding
 	
 	$rootScope.user = {};//User Details
 	$rootScope.login = {};//Login Details
@@ -378,11 +379,12 @@ app.controller('TicketController', function($scope,$rootScope, $state, $http, $i
 
 
 
-app.controller('EventController', function($scope,$rootScope, $state, $http, $ionicPopup, $rootScope, $ionicViewService, $ionicNavBarDelegate,$ionicLoading,$ionicSideMenuDelegate) {
+app.controller('EventController', function($scope,$rootScope, $state, $http, $ionicPopup, $rootScope, $ionicViewService, $ionicNavBarDelegate,$ionicLoading,$ionicSideMenuDelegate,$stateParams) {
 
 
 	
 	$scope.events = {};
+	$scope.categories = {};
 	$rootScope.event = {};//Empty the data
 		
 	
@@ -400,9 +402,12 @@ app.controller('EventController', function($scope,$rootScope, $state, $http, $io
 	}).success(function(data, status, header, config) {
 		
 		$ionicLoading.hide();
-		$scope.events = data.events;			
+		$scope.events = data.events;	
+		$scope.categories = data.categories;		
+		
 		$rootScope.events = $scope.events;//Assign to root scope
-		//console.log($rootScope.events);
+		$rootScope.categories = $scope.categories;//Assign to root scope
+		
 		
 	}).error(function(data, status, header, config) {
 		$ionicLoading.hide();
@@ -416,6 +421,23 @@ app.controller('EventController', function($scope,$rootScope, $state, $http, $io
 		$ionicSideMenuDelegate.toggleLeft();
 	};
 	
+	
+	
+	$scope.catfilter = function(data){
+			if($stateParams.category_id){
+				if($stateParams.category_id == data.Event.category_id){
+					return true;
+
+				}else{
+					return false;
+				}
+				
+				
+			}else{
+				return true;
+			}
+				
+	};
 	
 	
 });
