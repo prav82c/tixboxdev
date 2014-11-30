@@ -78,6 +78,11 @@ app.config(function($stateProvider, $urlRouterProvider) {
         templateUrl: 'profile.html',
         controller: 'ProfileController'
     });
+	$stateProvider.state('profile', {
+        url: '/profile/edit',
+        templateUrl: 'profile-edit.html',
+        controller: 'ProfileController'
+    });
 
 	
 	$stateProvider.state('tickets', {
