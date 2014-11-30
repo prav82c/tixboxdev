@@ -18,13 +18,21 @@
 document.addEventListener("deviceready",function() {
    window.addEventListener("message", function(event) {
         if (event.data == "redirect_wallet") {
+		
 	        document.location.href= "#/wallet";
+			
         }else if(event.data == "redirect_events"){
 		
 			document.location.href= "#/events";
 			
+		}else if(event.data == "redirect_tickets"){
+		
+			document.location.href= "#/tickets";
+			
 		}else{
+		
 			document.location.href= "#/events";
+			
 		}
     }, false);
 

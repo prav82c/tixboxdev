@@ -12,24 +12,24 @@
   <ion-content>
       <div class="padtty">
       <span class="input-label">Name</span>
-      <span class="small">Ponnuchamy K</span>
+      <span class="small">{{profile.data.user.first_name}} {{profile.data.user.last_name}}</span>
       <hr />
       <span class="input-label">Email</span>
-      <span class="small">kpchamy@gmail.com</span>
+      <span class="small">{{profile.data.user.email}}</span>
       <hr />
       <span class="input-label">Mobile Number</span>
-      <span class="small">0528866403</span>
+      <span class="small">{{profile.data.user_profiles.contact_no}}</span>
       <hr />
       <span class="input-label">Gender</span>
-      <span class="small">Male</span>
+      <span class="small">{{profile.data.user_profiles.gender_id}}</span>
       <hr />
       <span class="input-label">Country/City</span>
-      <span class="small">UAE/Dubai</span>
+      <span class="small">{{profile.data.user_profiles.country_name}}</span>
       <hr />
       <span class="input-label">Address</span>
       <span class="small">203,Dubai<br />alquor<br />uae</span>
       <hr />
-      <a href="" class="button button-block button-assertive"> Edit Profile </a>
+      <a href="#/profile/edit" class="button button-block button-assertive"> Edit Profile </a>
       </div>
       
   </ion-content>
