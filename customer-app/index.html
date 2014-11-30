@@ -7,13 +7,9 @@
 <link href='https://fonts.googleapis.com/css?family=Oswald' rel='stylesheet' type='text/css'>
 <link href="lib/ionic/css/ionic.css" rel="stylesheet">
 <link href="lib/ionic/css/style.css" rel="stylesheet">
-<<<<<<< HEAD
 <!--
 <script src="cordova.js"></script>
 -->
-=======
-<!--<script src="cordova.js"></script>-->
->>>>>>> f45e9f0c6f2e8c8ecfdc574bba89ea0bd3bd8edc
 <script src="lib/ionic/js/ionic.bundle.js"></script>
 <script src="js/app.js"></script>
 <script src="lib/ionic/js/ionic.bundle.min.js"></script>
@@ -48,10 +44,8 @@ document.addEventListener("deviceready",function() {
 		<ion-header-bar class="bar-assertive"><h1 class="title">Categories</h1></ion-header-bar>		
 		<ion-content>
 			<ion-list>
-				<a href="#/events/1" class="item uc" menu-close>Arts & Theater</a>
-				<a href="#/events/2" class="item uc" menu-close>Family</a>
-				<a href="#/events/3" class="item uc" menu-close>Sports</a>
-				<a href="#/events/4" class="item uc" menu-close>Night Club</a>
+				<a href="#/events" class="item uc" menu-close >All</a>
+				<a href="#/events/cat/{{cat.category_id}}" class="item uc" menu-close ng-repeat="cat in categories">{{cat.title}}</a>
 			</ion-list>
 		</ion-content>
 	</ion-side-menu>
