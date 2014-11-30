@@ -1,0 +1,36 @@
+<ion-header-bar align-title="left" class="bar-assertive">
+  <div class="buttons">
+    <button class="button button-icon icon ion-ios7-arrow-back" ng-click="goBack()"></button>
+  </div>
+  <h1 class="title title-left"><img src="lib/ionic/img/logo_tb_small.png" alt="tixbox.com" class="logoS"> SELECT DATE &amp; TIME</h1>
+  <div class="buttons">
+    <button class="button button-icon icon ion-ios7-cart" ng-if="cart.length >= 1" ng-click="showCart()"></button>
+    <button class="button button-icon icon ion-ios7-settings-strong" ng-click="showProfile()"></button>
+  </div>
+</ion-header-bar>
+<ion-view title="Event Details">
+  <ion-content>
+    <div class="padtty">
+      <div class="selectDTbox clearfix">	
+      <a href="" class="evedtBox"><span class="eveMY">NOV</span><span class="eveDate">26</span><span class="eveDay">FRI</span><span class="eveTime">07:00 PM</span></a>
+      <a href="" class="evedtBox"><span class="eveMY">NOV</span><span class="eveDate">26</span><span class="eveDay">FRI</span><span class="eveTime">07:00 PM</span></a>
+      <a href="" class="evedtBox"><span class="eveMY">NOV</span><span class="eveDate">26</span><span class="eveDay">FRI</span><span class="eveTime">07:00 PM</span></a>
+      <a href="" class="evedtBox"><span class="eveMY">NOV</span><span class="eveDate">26</span><span class="eveDay">FRI</span><span class="eveTime">07:00 PM</span></a>
+      <a href="" class="evedtBox"><span class="eveMY">NOV</span><span class="eveDate">26</span><span class="eveDay">FRI</span><span class="eveTime">07:00 PM</span></a>
+      <a href="" class="evedtBox"><span class="eveMY">NOV</span><span class="eveDate">26</span><span class="eveDay">FRI</span><span class="eveTime">07:00 PM</span></a>
+      <a href="" class="evedtBox"><span class="eveMY">NOV</span><span class="eveDate">26</span><span class="eveDay">FRI</span><span class="eveTime">07:00 PM</span></a>
+      <a href="" class="evedtBox"><span class="eveMY">NOV</span><span class="eveDate">26</span><span class="eveDay">FRI</span><span class="eveTime">07:00 PM</span></a>
+      <a href="" class="evedtBox"><span class="eveMY">NOV</span><span class="eveDate">26</span><span class="eveDay">FRI</span><span class="eveTime">07:00 PM</span></a>
+      </div>
+        <div class="list" ng-if="data.event_dates">
+            <select id="event_date_id" 
+            value="data.event_dates[0]"
+            ng-model="choose.event_date" 
+            ng-options="make.start_date for make in data.event_dates"
+            ng-change="makeChanged(make.event_date_id)">
+            </select>
+        </div>
+    </div>
+    			
+  </ion-content>
+</ion-view>

@@ -37,12 +37,6 @@ ul li {
 	text-transform:lowercase;
 }
 
-h1.title {
-	text-transform:uppercase;
-	font-weight:bold;
-	padding-left:10px;
-}
-
 .home_eventTitle {
 	font-family: 'Oswald',sans-serif;
 	font-size:16px;
@@ -71,6 +65,11 @@ top: 50px;
 	text-transform:uppercase;
 }
 
+.selectTckt .evedet {
+	margin:0 0 0 10px!important;
+	display:inline-block;
+}
+
 .tprice {
 	font-size:24px;
 	color:#fff;
@@ -97,6 +96,9 @@ top: 50px;
 
 .bar .title {
 	left:30px!important;
+	line-height:50px;
+	font-size:20px;
+	font-weight:normal;
 }
 
 .logoS {
@@ -110,6 +112,39 @@ top: 50px;
 
 .eveListItem .listbuybut {
 	margin:0!important;
+}
+
+.evedtBox {
+	float:left;
+	display:inline-block;
+	background:#C13B39;
+	color:#fff;
+	text-align:center;
+	width:70px;
+	padding-top:5px;
+	margin-right:1px;
+	margin-bottom:10px;
+}
+
+.eveMY {
+	display:block;
+	font-size:12px;
+}
+.eveDate {
+	display:block;
+	font-size:28px;
+	line-height:28px;
+}
+.eveDay {
+	display:block;
+	font-size:12px;
+}
+
+.eveTime {
+	display:block;
+	font-size:14px;
+	background:#333;
+	padding:3px 0;
 }
 
 .locico {
