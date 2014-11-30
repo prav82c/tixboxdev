@@ -78,9 +78,16 @@ app.config(function($stateProvider, $urlRouterProvider) {
         templateUrl: 'profile.html',
         controller: 'ProfileController'
     });
+	
 	$stateProvider.state('profile-edit', {
         url: '/profile/edit',
         templateUrl: 'profile-edit.html',
+        controller: 'ProfileController'
+    });
+	
+	$stateProvider.state('profile-change', {
+        url: '/profile/change',
+        templateUrl: 'profile-change.html',
         controller: 'ProfileController'
     });
 
@@ -325,11 +332,14 @@ app.controller('WishlistController', function($scope,$rootScope, $state, $http, 
 			"email": $rootScope.user.email,		
 			"password": $rootScope.user.password		
 		}
-	}).success(function(data, status, header, config) {
-		
+	}).success(function(data, status, header, config) {	
+
+	
 		$ionicLoading.hide();
 		$scope.wishlist = data;
 		console.log($scope.wishlist);
+		
+		
 	}).error(function(data, status, header, config) {
 		$ionicLoading.hide();
 		var alertPopup = $ionicPopup.alert({

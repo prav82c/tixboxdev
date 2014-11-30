@@ -10,18 +10,17 @@
 </ion-header-bar>
 <ion-view title="Cart Page">
   <ion-content>
-    <div class="padtty"> <a class="item item-avatar item-button-right" href=""> <img src="lib/ionic/img/cart1.jpg">
-      <h2 class="uc">Sensation</h2>
+    <div class="padtty"> 
+	  
+	  <a class="item item-avatar item-button-right" href="" ng-repeat="data in wishlist"> 
+	  
+	  <img src="lib/ionic/img/cart1.jpg">
+      <h2 class="uc">{{}}</h2>
       <div class="small"><i class="icon ion-calendar red zico"></i> <span>Nov 7, 2014, Friday</span></div>
       <button class="button button-assertive mtten"> <i class="icon ion-ios7-trash-outline"></i> </button>
-      </a> <a class="item item-avatar item-button-right" href=""> <img src="lib/ionic/img/cart2.jpg">
-      <h2 class="uc">Illusionits</h2>
-      <div class="small"><i class="icon ion-calendar red zico"></i> <span>Nov 7, 2014, Friday</span></div>
-      <button class="button button-assertive mtten"> <i class="icon ion-ios7-trash-outline"></i> </button>
-      </a> <a class="item item-avatar item-button-right" href=""> <img src="lib/ionic/img/cart3.jpg">
-      <h2 class="uc">Boyzone </h2>
-      <div class="small"><i class="icon ion-calendar red zico"></i> <span>Nov 7, 2014, Friday</span></div>
-      <button class="button button-assertive mtten"> <i class="icon ion-ios7-trash-outline"></i> </button>
-      </a> </div>
+	  
+      </a> 
+	  
+	</div>
   </ion-content>
 </ion-view>
