@@ -42,6 +42,12 @@ app.config(function($stateProvider, $urlRouterProvider) {
         controller: 'EventDetailsController'
     });
 	
+	$stateProvider.state('events-page-tickets', {
+        url: '/event/:event_id/tickets',
+        templateUrl: 'event-page-tickets.html',
+        controller: 'EventPageController'
+    });
+	
 	$stateProvider.state('cart', {
         url: '/cart',
         templateUrl: 'cart.html',
