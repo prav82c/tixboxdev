@@ -326,16 +326,19 @@ app.controller('WishlistController', function($scope,$rootScope, $state, $http, 
 	
 	$http({
 		method: 'jsonp',
-		url: basepath + 'app/mytickets?callback=JSON_CALLBACK',
+		url: basepath + 'app/wishlist?callback=JSON_CALLBACK',
 		params: {
 			"email": $rootScope.user.email,		
 			"password": $rootScope.user.password		
 		}
-	}).success(function(data, status, header, config) {
-		
+	}).success(function(data, status, header, config) {	
+
+	
 		$ionicLoading.hide();
 		$scope.wishlist = data;
-		console.log($scope.wishlist);
+		//console.log($scope.wishlist);
+		
+		
 	}).error(function(data, status, header, config) {
 		$ionicLoading.hide();
 		var alertPopup = $ionicPopup.alert({
@@ -344,6 +347,24 @@ app.controller('WishlistController', function($scope,$rootScope, $state, $http, 
 		});
 	});	
 	
+	
+	$scope.remove = function(){
+		var confirmPopup = $ionicPopup.confirm({
+			title: 'Delete Wishlist',
+			template: 'Are you sure you want to remove wishlist?'
+		});
+		confirmPopup.then(function(res) {
+			if(res) {
+				console.log('You are sure');
+				
+			} else {
+			
+				console.log('You are not sure');
+				
+			}
+		});
+		return false;
+	};
 	
 	
 });
