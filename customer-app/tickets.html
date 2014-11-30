@@ -1,25 +1,18 @@
 <ion-header-bar align-title="left" class="bar-assertive">
   <div class="buttons">
     <button class="button button-icon icon ion-ios7-arrow-back" ng-click="goBack()"></button>
-	
   </div>
   <h1 class="title title-left"><img src="lib/ionic/img/logo_tb_small.png" alt="tixbox.com" class="logoS"> MY TICKETS</h1>
   <div class="buttons">
     <button class="button button-icon icon ion-ios7-cart" ng-if="cart.length >= 1" ng-click="showCart()"></button>
-	<button class="button button-icon icon ion-ios7-settings-strong" ng-click="showProfile()"></button>
+    <button class="button button-icon icon ion-ios7-settings-strong" ng-click="showProfile()"></button>
   </div>
 </ion-header-bar>
 <ion-view title="Ticket">
-	<ion-content>
-		<div class="padtty">
-			<div class="detTabHeadhold">
-				<h2 class="detTabHead_new">My Tickets</h2>
-				<div class="tinys_wrapper"></div>
-			</div>				
-			<a class="item item-icon-right" href="#/ticket/{{data.trans_id}}" ng-repeat="data in tickets">
-			  <div>{{data.trans_id}}<br /><span class="small">{{data.created_at}}</span></div>
-			  <i class="icon ion-ios7-arrow-forward"></i>
-			</a>
-		</div>
-	</ion-content>          
+  <ion-content>
+    <div class="padtty"> <a class="item item-icon-right" href="#/ticket/{{data.trans_id}}" ng-repeat="data in tickets">
+      <div>{{data.trans_id}}<br />
+        <span class="small">{{data.created_at}}</span></div>
+      <i class="icon ion-ios7-arrow-forward"></i> </a> </div>
+  </ion-content>
 </ion-view>

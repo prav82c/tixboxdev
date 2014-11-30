@@ -1,40 +1,50 @@
 <ion-header-bar align-title="left" class="bar-assertive">
   <div class="buttons">
     <button class="button button-icon icon ion-ios7-arrow-back" ng-click="goEventPage()"></button>
-	
   </div>
   <h1 class="title title-left"><img src="lib/ionic/img/logo_tb_small.png" alt="tixbox.com" class="logoS"> EVENT DETAILS</h1>
   <div class="buttons">
     <button class="button button-icon icon ion-ios7-cart" ng-if="cart.length >= 1" ng-click="showCart()"></button>
-	<button class="button button-icon icon ion-ios7-settings-strong" ng-click="showProfile()"></button>
+    <button class="button button-icon icon ion-ios7-settings-strong" ng-click="showProfile()"></button>
   </div>
 </ion-header-bar>
 <ion-view title="Event Details">
-		<ion-content>
-<div class="padtty">		
-<div class="detTabHeadhold">
-<h2 class="detTabHead_new">Event Description</h2>
-<div class="tinys_wrapper"></div>
-</div>
-
-<!--Event Description-->
-<div ng-bind-html="data.event.description"></div>
-
-</div>
-
-<div class="padtty">	
-<div class="detTabHeadhold">
-<h2 class="detTabHead_new">Terms &amp; Conditions</h2>
-<div class="tinys_wrapper"></div>
-</div>		
-
-<!--Event Terms Condition-->
-<div ng-bind-html="data.event.terms_condition"></div>
-
-</div>
-
-			
-		</ion-content>          
-	</ion-view>
+  <ion-content>
+    <div class="padtty">
+      <div class="detTabHeadhold">
+        <h2 class="detTabHead_new">Event Description</h2>
+        <div class="tinys_wrapper"></div>
+      </div>
+      <!--Event Description-->
+      <div ng-bind-html="data.event.description"></div>
+    </div>
     
+    <div class="padtty">
+      <div class="detTabHeadhold">
+        <h2 class="detTabHead_new">Terms &amp; Conditions</h2>
+        <div class="tinys_wrapper"></div>
+      </div>
+      <!--Event Terms Condition-->
+      <div ng-bind-html="data.event.terms_condition"></div>
+    </div>
     
+    <div class="padtty">
+      <div class="detTabHeadhold">
+        <h2 class="detTabHead_new">Floor Plan</h2>
+        <div class="tinys_wrapper"></div>
+      </div>
+      <!--Event Floor Plan-->
+      <div ng-bind-html="data.event.floorplan"></div>
+    </div>
+    
+    <div class="padtty">
+      <div class="detTabHeadhold">
+        <h2 class="detTabHead_new">Schedule</h2>
+        <div class="tinys_wrapper"></div>
+      </div>
+      <!--Event Schedule-->
+      <div ng-bind-html="data.event.schedule"></div>
+    </div>
+    
+  </ion-content>
+</ion-view>
