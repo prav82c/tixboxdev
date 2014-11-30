@@ -72,15 +72,21 @@ app.config(function($stateProvider, $urlRouterProvider) {
         controller: 'CheckoutController'
     });
 	
-	
 	$stateProvider.state('profile', {
         url: '/profile',
         templateUrl: 'profile.html',
         controller: 'ProfileController'
     });
+	
 	$stateProvider.state('profile-edit', {
         url: '/profile/edit',
         templateUrl: 'profile-edit.html',
+        controller: 'ProfileController'
+    });
+	
+	$stateProvider.state('profile-change', {
+        url: '/profile/change',
+        templateUrl: 'profile-change.html',
         controller: 'ProfileController'
     });
 
