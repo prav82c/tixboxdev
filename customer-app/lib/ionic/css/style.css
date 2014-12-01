@@ -291,34 +291,19 @@ color: #fff;
 	padding:30px;
 }
 
-.splashbox {
-	background:#fff;
-}
-
-.splashimg{
-	position:absolute; top:50%; left:50%; width:220px; height:74px; margin-left:-110px; margin-top:-37px; 
-}
-
 .splashbg {
-background: #45484d; /* Old browsers */
-background: -moz-radial-gradient(center, ellipse cover,  #45484d 0%, #000000 100%); /* FF3.6+ */
-background: -webkit-gradient(radial, center center, 0px, center center, 100%, color-stop(0%,#45484d), color-stop(100%,#000000)); /* Chrome,Safari4+ */
-background: -webkit-radial-gradient(center, ellipse cover,  #45484d 0%,#000000 100%); /* Chrome10+,Safari5.1+ */
-background: -o-radial-gradient(center, ellipse cover,  #45484d 0%,#000000 100%); /* Opera 12+ */
-background: -ms-radial-gradient(center, ellipse cover,  #45484d 0%,#000000 100%); /* IE10+ */
-background: radial-gradient(ellipse at center,  #45484d 0%,#000000 100%); /* W3C */
-filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#45484d', endColorstr='#000000',GradientType=1 ); /* IE6-9 fallback on horizontal gradient */
-position:relative;
-height:100%;
+background:url('../img/logo.png')no-repeat 50% 50%;
 }
 
-.logobox {
-	background: url('../img/logo.png')no-repeat 50% 50%;
-	height:100%;
+.splashLogo {
+	/* background: url('../img/logo.png')no-repeat 50% 50%;
+	height:100%; */
 	position:absolute;
 	width:220px;
+	height:74px;
 	top:50%;
 	left:50%;
+	margin-left:-110px; margin-top:-37px; 
 }
 
 .well-bg {

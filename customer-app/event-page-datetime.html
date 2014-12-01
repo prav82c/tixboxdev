@@ -12,8 +12,9 @@
   <ion-content>
     <div class="padtty">
       <div class="clearfix selectDate">
-        <h2 class="home_eventTitle">{{data.event.title}}</h2>
+        <h1 class="eventTitle">{{data.event.title}}</h1>
         <p><span class="fwi11"><i class="icon ion-ios7-location red zico"></i></span> <span>{{data.event.event_address.address}}</span></p>
+        <a href="#/event/{{data.event.event_id}}/details">SEE MORE DETAILS</a>
       </div>
       <hr class="light"/>
       <div class="selectDTbox clearfix"> <a href="#/event/{{event_dates.event_id}}/tickets/{{event_dates.event_date_id}}" class="evedtBox" ng-repeat="event_dates in data.event_dates"> <span class="eveMY">{{event_dates.eveMonth}}</span> <span class="eveDate">{{event_dates.eveDate}}</span> <span class="eveDay">{{event_dates.eveDay}}</span> <span class="eveTime">{{event_dates.eveStartTime}}</span> </a> </div>
