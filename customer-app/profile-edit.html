@@ -12,16 +12,16 @@
   <ion-content>
     <div class="padtty">
       <label class="item item-input item-floating-label"> <span class="input-label">First Name</span>
-        <input type="text" placeholder="First Name">
+        <input type="text" placeholder="First Name" value="{{profile.data.user.first_name}}">
       </label>
       <label class="item item-input item-floating-label"> <span class="input-label">Last Name</span>
-        <input type="text" placeholder="Last Name">
+        <input type="text" placeholder="Last Name" value="{{profile.data.user.last_name}}">
       </label>
       <label class="item item-input item-floating-label"> <span class="input-label">Email</span>
-        <input type="text" placeholder="Email">
+        <input type="text" placeholder="Email" value="{{profile.data.user.email}}">
       </label>
       <label class="item item-input item-floating-label"> <span class="input-label">Mobile Number</span>
-        <input type="number" placeholder="Mobile Number">
+        <input type="number" placeholder="Mobile Number" value="{{profile.data.user_profiles.contact_no}}">
       </label>
       <label class="item selectstyle"> <span class="input-label mbten">Gender</span>
         <select>

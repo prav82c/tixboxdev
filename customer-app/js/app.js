@@ -61,7 +61,7 @@ app.config(function($stateProvider, $urlRouterProvider) {
     });
 	
 	$stateProvider.state('checkout', {
-        url: '/checkout',
+        url: '/checkout/:amount',
         templateUrl: 'checkout.html',
         controller: 'CheckoutController'
     });
@@ -744,7 +744,6 @@ app.controller('CartController', function($scope, $rootScope, $state, $http, $io
 
 
 app.controller('WalletController', function($scope,$rootScope, $state, $http, $ionicPopup, $rootScope, $ionicViewService, $ionicNavBarDelegate,$ionicLoading,$stateParams) {
-
 	
 	$scope.wallet = {};
 	$scope.credit = {};
@@ -756,7 +755,9 @@ app.controller('WalletController', function($scope,$rootScope, $state, $http, $i
 	$scope.updateWallet = function(){
 		if($scope.credit.amount >= 1)
 		{
+			
 			$state.go('checkout',{amount:$scope.credit.amount});
+			return false;
 			
 		}else{
 			var alertPopup = $ionicPopup.alert({
