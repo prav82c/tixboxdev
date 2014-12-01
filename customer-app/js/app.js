@@ -348,14 +348,26 @@ app.controller('WishlistController', function($scope,$rootScope, $state, $http, 
 	});	
 	
 	
-	$scope.remove = function(){
+	$scope.remove = function(event_id){
 		var confirmPopup = $ionicPopup.confirm({
 			title: 'Delete From Wishlist',
 			template: 'Are you sure you want to remove wishlist?',
 		});
 		confirmPopup.then(function(res) {
 			if(res) {
-				console.log('You are sure');
+				$http({
+					method: 'jsonp',
+					url: basepath + 'app/wishlist/add?callback=JSON_CALLBACK',
+					params: {
+						"email": $rootScope.user.email,		
+						"password": $rootScope.user.password,		
+						"event_id": event_id		
+					}
+				}).success(function(data, status, header, config) {
+					
+					$state.go($state.current, {}, {reload: true});
+					
+				});				
 				
 			} else {
 			
@@ -698,7 +710,7 @@ app.controller('CartController', function($scope, $rootScope, $state, $http, $io
 		);
 	});	
 	
-	console.log($rootScope.cart);
+	//console.log($rootScope.cart);
 	
 	$http({
 		method: 'jsonp',
