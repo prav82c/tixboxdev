@@ -11,31 +11,13 @@
 <ion-view title="Event Details">
   <ion-content class="has-footer">
     <div class="padtty">
-    	<div class="clearfix selectTckt">
-<<<<<<< HEAD
-		
-		
-        <a href="" class="evedtBox" ng-repeat="event_dates in data.event_dates" ng-if="event_dates.event_date_id == event_date_id">
-			<span class="eveMY">{{event_dates.eveMonth}}</span>
-			<span class="eveDate">{{event_dates.eveDate}}</span>
-			<span class="eveDay">{{event_dates.eveDay}}</span>
-			<span class="eveTime">{{event_dates.eveStartTime}}</span>	
-		</a>
-		
-		<div class="evedet">
-		<h1 class="eventTitle">{{data.event.title}}</h1>
-		<p><span>{{data.event.event_address.address}}</span></p>
-		</div>
-		
-=======
-        <a href="" class="evedtBox"><span class="eveMY">NOV</span><span class="eveDate">26</span><span class="eveDay">FRI</span><span class="eveTime">07:00 PM</span></a>
-        	<div class="evedet">
-        	<h2 class="home_eventTitle">{{data.event.title}}</h2>
-            <p><span class="fwi11"><i class="icon ion-ios7-location red zico"></i></span> <span>{{data.event.event_address.address}}</span></p>
-            </div>
->>>>>>> df8a4c6003d393a2d3231af156455c88c8c5dc2d
+      <div class="clearfix selectTckt">
+        <div class="evedet">
+          <h2 class="home_eventTitle">{{data.event.title}}</h2>
+          <p><span class="fwi11"><i class="icon ion-ios7-location red zico"></i></span> <span>{{data.event.event_address.address}}</span></p>
         </div>
-        <hr class="light"/>
+        <a href="" class="evedtBox" ng-repeat="event_dates in data.event_dates" ng-if="event_dates.event_date_id == event_date_id"> <span class="eveMY">{{event_dates.eveMonth}}</span> <span class="eveDate">{{event_dates.eveDate}}</span> <span class="eveDay">{{event_dates.eveDay}}</span> <span class="eveTime">{{event_dates.eveStartTime}}</span> </a> </div>
+      <hr class="light"/>
       <div class="list" ng-repeat="ticket in data.event.ticket">
         <div class="home_eventTitle mbten">{{ticket.ticket_name}}</div>
         <label class="item item-input item-select">
@@ -44,7 +26,6 @@
         </select>
         </label>
       </div>
-      
     </div>
   </ion-content>
 </ion-view>
