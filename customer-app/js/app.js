@@ -350,8 +350,8 @@ app.controller('WishlistController', function($scope,$rootScope, $state, $http, 
 	
 	$scope.remove = function(){
 		var confirmPopup = $ionicPopup.confirm({
-			title: 'Delete Wishlist',
-			template: 'Are you sure you want to remove wishlist?'
+			title: 'Delete From Wishlist',
+			template: 'Are you sure you want to remove wishlist?',
 		});
 		confirmPopup.then(function(res) {
 			if(res) {
