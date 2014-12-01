@@ -1,6 +1,6 @@
 <ion-header-bar align-title="left" class="bar-assertive">
   <div class="buttons">
-    <button class="button button-icon icon ion-navicon"></button>
+    <button class="button button-icon icon ion-ios7-arrow-back" ng-click="goBack()"></button>
   </div>
   <h1 class="title title-left"><img src="lib/ionic/img/logo_tb_small.png" alt="tixbox.com" class="logoS"> EDIT PROFILE</h1>
   <div class="buttons">
@@ -11,17 +11,17 @@
 <ion-view title="Edit Profile">
   <ion-content>
     <div class="padtty">
-      <label class="item item-input item-floating-label"> <span class="input-label">First Name</span>
-        <input type="text" placeholder="First Name" value="{{profile.data.user.first_name}}">
+      <label class="item item-input item-floating-label11"> <span class="input-label">First Name</span>
+        <input type="text" placeholder="First Name">
       </label>
-      <label class="item item-input item-floating-label"> <span class="input-label">Last Name</span>
-        <input type="text" placeholder="Last Name" value="{{profile.data.user.last_name}}">
+      <label class="item item-input item-floating-label11"> <span class="input-label">Last Name</span>
+        <input type="text" placeholder="Last Name">
       </label>
-      <label class="item item-input item-floating-label"> <span class="input-label">Email</span>
-        <input type="text" placeholder="Email" value="{{profile.data.user.email}}">
+      <label class="item item-input item-floating-label11"> <span class="input-label">Email</span>
+        <input type="text" placeholder="Email">
       </label>
-      <label class="item item-input item-floating-label"> <span class="input-label">Mobile Number</span>
-        <input type="number" placeholder="Mobile Number" value="{{profile.data.user_profiles.contact_no}}">
+      <label class="item item-input item-floating-label11"> <span class="input-label">Mobile Number</span>
+        <input type="number" placeholder="Mobile Number">
       </label>
       <label class="item selectstyle"> <span class="input-label mbten">Gender</span>
         <select>
@@ -48,6 +48,6 @@
       <label class="item selectstyle"> <span class="input-label mbten">Address</span>
         <textarea class="form-control" cols="50" rows="10"></textarea>
       </label>
-      <a href="#checkout" class="button button-block button-assertive"> Save Changes </a> </div>
+      <a href="#profile" class="button button-block button-assertive"> Save Changes </a> </div>
   </ion-content>
 </ion-view>

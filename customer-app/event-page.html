@@ -25,9 +25,9 @@
         <div class="well-bg1 mtten">
           <h1 class="eventTitle">{{data.event.title}}</h1>
           <p ng-bind-html="data.event.short_description"></p>
-          <p><span class="locico"><i class="icon ion-calendar"></i></span> <span>{{data.event.start_date}}</span></p>
-          <p><span class="locico"><i class="icon ion-ios7-location"></i></span> <span>{{data.event.event_address.address}}</span></p>
-          <p><span class="locico"><i class="icon ion-map"></i></span> <span>{{data.event.event_address.city_id}}</span></p>
+          <p><span class="fwi"><i class="icon ion-calendar red zico"></i></span> <span>{{data.event.start_date}}</span></p>
+          <p><span class="fwi"><i class="icon ion-ios7-location red zico"></i></span> <span>{{data.event.event_address.address}}</span></p>
+          <p><span class="fwi"><i class="icon ion-map red zico"></i></span> <span>{{data.event.event_address.city_id}}</span></p>
           <div class="mttty"> <a href="#/event/{{data.event.event_id}}/details" class="button icon-right ion-chevron-right button-outline button-block button-stable"> See More Details </a> </div>
         </div>
         <!--<hr class="light" />

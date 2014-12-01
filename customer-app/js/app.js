@@ -79,7 +79,6 @@ app.config(function($stateProvider, $urlRouterProvider) {
         controller: 'CheckoutController'
     });
 	
-	
 	$stateProvider.state('profile', {
         url: '/profile',
         templateUrl: 'profile.html',
@@ -365,8 +364,8 @@ app.controller('WishlistController', function($scope,$rootScope, $state, $http, 
 	
 	$scope.remove = function(event_id){
 		var confirmPopup = $ionicPopup.confirm({
-			title: 'Delete Wishlist',
-			template: 'Are you sure you want to remove wishlist?'
+			title: 'Delete From Wishlist',
+			template: 'Are you sure you want to remove wishlist?',
 		});
 		confirmPopup.then(function(res) {
 			if(res) {
