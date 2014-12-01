@@ -102,6 +102,15 @@ top: 50px;
 	text-transform:uppercase;
 }
 
+.title.nopos {
+	left:0px!important;
+}
+
+.sidetitle {
+	text-transform:uppercase;
+	color:#fff;
+}
+
 .popup {
 	background:#C13B39!important;
 	color:#fff!important;
