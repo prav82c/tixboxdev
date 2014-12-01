@@ -12,34 +12,26 @@
   <ion-content>
     <div class="padtty">
     	<div class="clearfix selectDate">
-        	<h2 class="home_eventTitle">{{data.Event.title}}</h2>
+        <h2 class="home_eventTitle">{{data.event.title}}</h2>
           <table width="100%" border="0" cellpadding="0" cellspacing="0">
             <tr>
-              <td width="170" align="left"><i class="icon ion-calendar red zico"></i> {{data.Event.date}}</td>
-              <td align="left"><i class="icon ion-ios7-location red zico"></i> {{data.Event.address.city_id}}</td>
+              <td width="170" align="left"><i class="icon ion-calendar red zico"></i> {{data.event.start_date}}</td>
+              <td align="left"><i class="icon ion-ios7-location red zico"></i> {{data.event.event_address.city_id}}</td>
             </tr>
           </table>
         </div>
         <hr class="light"/>
       <div class="selectDTbox clearfix">	
-      <a href="" class="evedtBox"><span class="eveMY">NOV</span><span class="eveDate">26</span><span class="eveDay">FRI</span><span class="eveTime">07:00 PM</span></a>
-      <a href="" class="evedtBox"><span class="eveMY">NOV</span><span class="eveDate">26</span><span class="eveDay">FRI</span><span class="eveTime">07:00 PM</span></a>
-      <a href="" class="evedtBox"><span class="eveMY">NOV</span><span class="eveDate">26</span><span class="eveDay">FRI</span><span class="eveTime">07:00 PM</span></a>
-      <a href="" class="evedtBox"><span class="eveMY">NOV</span><span class="eveDate">26</span><span class="eveDay">FRI</span><span class="eveTime">07:00 PM</span></a>
-      <a href="" class="evedtBox"><span class="eveMY">NOV</span><span class="eveDate">26</span><span class="eveDay">FRI</span><span class="eveTime">07:00 PM</span></a>
-      <a href="" class="evedtBox"><span class="eveMY">NOV</span><span class="eveDate">26</span><span class="eveDay">FRI</span><span class="eveTime">07:00 PM</span></a>
-      <a href="" class="evedtBox"><span class="eveMY">NOV</span><span class="eveDate">26</span><span class="eveDay">FRI</span><span class="eveTime">07:00 PM</span></a>
-      <a href="" class="evedtBox"><span class="eveMY">NOV</span><span class="eveDate">26</span><span class="eveDay">FRI</span><span class="eveTime">07:00 PM</span></a>
-      <a href="" class="evedtBox"><span class="eveMY">NOV</span><span class="eveDate">26</span><span class="eveDay">FRI</span><span class="eveTime">07:00 PM</span></a>
+
+      <a href="#/event/{{event_dates.event_id}}/tickets/{{event_dates.event_date_id}}" class="evedtBox" ng-repeat="event_dates in data.event_dates">
+		<span class="eveMY">{{event_dates.eveMonth}}</span>
+		<span class="eveDate">{{event_dates.eveDate}}</span>
+		<span class="eveDay">{{event_dates.eveDay}}</span>
+		<span class="eveTime">{{event_dates.eveStartTime}}</span>	  
+	  </a>
+	  
       </div>
-        <div class="list" ng-if="data.event_dates">
-            <select id="event_date_id" 
-            value="data.event_dates[0]"
-            ng-model="choose.event_date" 
-            ng-options="make.start_date for make in data.event_dates"
-            ng-change="makeChanged(make.event_date_id)">
-            </select>
-        </div>
+		
     </div>
     			
   </ion-content>

@@ -18,6 +18,13 @@ app.config(function($stateProvider, $urlRouterProvider) {
         controller: 'LoginController'
     });
 	
+	$stateProvider.state('signup', {
+        url: '/signup',
+        templateUrl: 'signup.html',
+        controller: 'SignupController'
+    });
+	
+	
 	$stateProvider.state('events', {
         url: '/events',
         templateUrl: 'events.html',
@@ -49,7 +56,7 @@ app.config(function($stateProvider, $urlRouterProvider) {
     });
 	
 	$stateProvider.state('events-page-tickets', {
-        url: '/event/:event_id/tickets',
+        url: '/event/:event_id/tickets/:event_date_id',
         templateUrl: 'event-page-tickets.html',
         controller: 'EventPageController'
     });
@@ -209,6 +216,13 @@ app.controller('SplashController', function($scope,$rootScope,$state, $http, $io
 	
 });
 
+
+app.controller('SignupController', function($scope,$rootScope, $state, $http, $ionicPopup, $rootScope, $ionicViewService, $ionicNavBarDelegate,$ionicLoading) {
+
+
+
+
+});
 
 app.controller('LoginController', function($scope,$rootScope, $state, $http, $ionicPopup, $rootScope, $ionicViewService, $ionicNavBarDelegate,$ionicLoading) {
 
@@ -509,10 +523,11 @@ app.controller('EventPageController', function($scope,$rootScope,$state, $http, 
 	$scope.event_date_id = "";
 	$scope.choose = {};
 	
-	//console.log($rootScope.events);
 	
-	$scope.makeChanged = function(){
-		$scope.event_date_id = $scope.choose.event_date.event_date_id;
+	//Get ticket id
+	if($stateParams.event_date_id)
+	{
+		$scope.event_date_id = $stateParams.event_date_id;
 	}
 
 	if(Object.keys($rootScope.event).length === 0){	

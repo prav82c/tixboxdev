@@ -12,11 +12,20 @@
   <ion-content class="has-footer">
     <div class="padtty">
     	<div class="clearfix selectTckt">
-        <a href="" class="evedtBox"><span class="eveMY">NOV</span><span class="eveDate">26</span><span class="eveDay">FRI</span><span class="eveTime">07:00 PM</span></a>
-        	<div class="evedet">
-        	<h1 class="eventTitle">{{data.event.title}}</h1>
-			<p><span>{{data.event.event_address.address}}</span></p>
-            </div>
+		
+		
+        <a href="" class="evedtBox" ng-repeat="event_dates in data.event_dates" ng-if="event_dates.event_date_id == event_date_id">
+			<span class="eveMY">{{event_dates.eveMonth}}</span>
+			<span class="eveDate">{{event_dates.eveDate}}</span>
+			<span class="eveDay">{{event_dates.eveDay}}</span>
+			<span class="eveTime">{{event_dates.eveStartTime}}</span>	
+		</a>
+		
+		<div class="evedet">
+		<h1 class="eventTitle">{{data.event.title}}</h1>
+		<p><span>{{data.event.event_address.address}}</span></p>
+		</div>
+		
         </div>
         <hr class="light"/>
       <div class="list" ng-repeat="ticket in data.event.ticket">
