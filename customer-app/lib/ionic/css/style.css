@@ -173,6 +173,12 @@ top: 50px;
 	line-height:30px;
 }
 
+.fwi {
+	width:30px;
+	text-align:center;
+	display:inline-block;
+}
+
 .eveImage img{
 width: 100%;
 vertical-align: middle;
