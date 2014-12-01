@@ -173,12 +173,8 @@ app.controller('AppController', function($rootScope, $scope, $state, $http, $ion
 
 app.controller('SplashController', function($scope,$rootScope,$state, $http, $ionicPopup, $rootScope, $ionicViewService, $ionicNavBarDelegate,$ionicLoading) {
     
-		$rootScope.events = {};//Empty on loadding
-	
-		setTimeout(function(){
-			$state.go('events');		
-		}, 3000);
-		
+		$rootScope.events = {};//Empty on loadding	
+				
 		$scope.goBack = function() {
 			$state.go('events');
 		};
@@ -188,7 +184,7 @@ app.controller('SplashController', function($scope,$rootScope,$state, $http, $io
 			url: basepath + 'applogin?callback=JSON_CALLBACK',
 			params: {"email": $scope.user.email, "password": $scope.user.password}
 		}).success(function(data, status, header, config) {
-		$ionicLoading.hide();
+				
 		if (data.error == 0)
 		{
 			
@@ -201,8 +197,19 @@ app.controller('SplashController', function($scope,$rootScope,$state, $http, $io
 			$rootScope.login = data;
 			$rootScope.user.session_id = $scope.login.session_id;
 			console.log("Session:"+$rootScope.user.session_id);
-			//Redirect to events page
-			$state.go('events');
+			
+			//Redirect after login
+			setTimeout(function(){
+				$ionicLoading.hide();
+				if($rootScope.user.session_id){
+				
+					$state.go('events');
+				
+				}else{
+					
+					$state.go('login');
+				}		
+			}, 3000);
 		}
 
 		}).error(function(data, status, header, config) {
