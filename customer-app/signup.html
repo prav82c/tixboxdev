@@ -1,32 +1,32 @@
 <ion-view title="Signup">
   <ion-content>
-    <div class="loginbox">
+    <div class="loginbox">	 
       <div class="text-center"><img src="lib/ionic/img/logo.png" alt="tixbox.com" height="50" class="mttty mbtty"></div>
       <div class="">
       <label class="item item-input item-floating-label"> <span class="input-label">First Name</span>
-        <input type="text" placeholder="First Name">
+        <input type="text" placeholder="First Name" ng-model="signup.first_name">
       </label>
       <label class="item item-input item-floating-label"> <span class="input-label">Last Name</span>
-        <input type="text" placeholder="Last Name">
+        <input type="text" placeholder="Last Name" ng-model="signup.last_name">
       </label>
       <label class="item item-input item-floating-label"> <span class="input-label">Mobile Number</span>
-        <input type="number" placeholder="Mobile Number">
+        <input type="number" placeholder="Mobile Number" ng-model="signup.contact_no">
       </label>
       <label class="item item-input item-floating-label"> <span class="input-label">Email</span>
-        <input type="text" placeholder="Email">
+        <input type="email" placeholder="Email" ng-model="signup.email">
       </label>
       <label class="item item-input item-floating-label"> <span class="input-label">Confirm Email</span>
-        <input type="text" placeholder="Confirm Email">
+        <input type="email" placeholder="Confirm Email" ng-model="signup.confirm_email">
       </label>
       <label class="item item-input item-floating-label"> <span class="input-label">Password</span>
-        <input type="password" placeholder="Password">
+        <input type="password" placeholder="Password" ng-model="signup.password">
       </label>
       <label class="item item-input item-floating-label"> <span class="input-label">Confirm Password</span>
-        <input type="password" placeholder="Confirm Password">
+        <input type="password" placeholder="Confirm Password" ng-model="signup.confirm_password">
       </label>
       </div>
-      <button class="button button-block button-assertive" class="button" ng-click="">
-      SIGNUP NOW
+      <button class="button button-block button-assertive" class="button" ng-click="update(signup)">
+		SIGNUP NOW
       </button>
     </div>
   </ion-content>

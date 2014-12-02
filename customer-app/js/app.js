@@ -250,7 +250,89 @@ app.controller('SplashController', function($scope,$rootScope,$state, $http, $io
 
 app.controller('SignupController', function($scope,$rootScope, $state, $http, $ionicPopup, $rootScope, $ionicViewService, $ionicNavBarDelegate,$ionicLoading) {
 
+	  $scope.signup = {};
+	  
+	  $scope.update = function(signup) {
+		
+		console.log($scope.signup);
+		
+		var error = false;
+		var message = "";
+		
+        if ($scope.signup.first_name=="" || angular.isUndefined($scope.signup.first_name)) {
+			error = true;
+			message+="First Name <br />";			
+        }else if($scope.signup.first_name == "" || angular.isUndefined($scope.signup.last_name)){
+			error = true;
+			message+="Last Name <br />";
+		}else if($scope.signup.contact_no == "" || angular.isUndefined($scope.signup.contact_no)){
+			error = true;
+			message+="Mobile <br />";
+		}else if($scope.signup.email == "" || angular.isUndefined($scope.signup.email)){
+			error = true;
+			message+="Email <br />";
+		}else if($scope.signup.email!= $scope.signup.confirm_email){
+			error = true;
+			message+="Email dosent match <br />";
+		}else if($scope.signup.password == "" || angular.isUndefined($scope.signup.password)){
+			error = true;
+			message+="Password <br />";
+		}else if($scope.signup.confirm_password != $scope.signup.password){
+			error = true;
+			message+="Password dosent match <br />";
+		}
+		
+			
+		if(error)
+		{
+			var alertPopup = $ionicPopup.alert({
+				title: 'Signup Error',
+				template: message
+			});
 
+		}else{
+		
+			$http({
+				method: 'jsonp',
+				url: basepath + 'appSignup?callback=JSON_CALLBACK',
+				params: {
+					"first_name": $scope.signup.first_name,		
+					"last_name": $scope.signup.last_name,		
+					"email": $scope.signup.email,		
+					"confirm_email": $scope.signup.confirm_email,		
+					"password": $scope.signup.password,		
+					"confirm_password": $scope.signup.confirm_password,		
+					"contact_no": $scope.signup.contact_no		
+				}
+			}).success(function(data, status, header, config) {
+				
+				if(data == "1")
+				{
+					window.localStorage.setItem("email",$scope.signup.confirm_email);
+					window.localStorage.setItem("password", $scope.signup.confirm_password);
+					$rootScope.user.email = $scope.signup.confirm_email;
+					$rootScope.user.password = $scope.signup.confirm_password;			
+					$state.go('login');
+				}else{
+				
+					var alertPopup = $ionicPopup.alert({
+						title: 'Signup Error',
+						template: "Email already exist"
+					});
+						
+					 $scope.signup.email="";
+					 $scope.signup.confirm_email="";
+					 $scope.signup.password="";
+					 $scope.signup.confirm_password="";
+					 
+				}
+			
+			});		
+		
+		
+		}
+			
+    };
 
 
 });
