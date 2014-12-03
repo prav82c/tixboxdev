@@ -306,18 +306,30 @@ app.controller('SignupController', function($scope,$rootScope, $state, $http, $i
 				}
 			}).success(function(data, status, header, config) {
 				
-				if(data == "1")
+				if(data.error == "0")
 				{
 					window.localStorage.setItem("email",$scope.signup.confirm_email);
 					window.localStorage.setItem("password", $scope.signup.confirm_password);
 					$rootScope.user.email = $scope.signup.confirm_email;
 					$rootScope.user.password = $scope.signup.confirm_password;			
 					$state.go('login');
-				}else{
+				}else if(data.error == "1"){
 				
 					var alertPopup = $ionicPopup.alert({
 						title: 'Signup Error',
-						template: "Email already exist"
+						template: data.message
+					});
+						
+					 $scope.signup.email="";
+					 $scope.signup.confirm_email="";
+					 $scope.signup.password="";
+					 $scope.signup.confirm_password="";
+					 
+				}else if(data.error == "2"){
+				
+					var alertPopup = $ionicPopup.alert({
+						title: 'Signup Error',
+						template: data.message
 					});
 						
 					 $scope.signup.email="";
