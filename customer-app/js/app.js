@@ -137,7 +137,7 @@ app.controller('AppController', function($rootScope, $scope, $state, $http, $ion
 	
 	$rootScope.user = {};//User Details
 	$rootScope.login = {};//Login Details
-	$rootScope.user.email = "kpchamy.php@gmail.com";
+	$rootScope.user.email = "";
 	$rootScope.user.password = "";
 	$rootScope.user.session_id = "";
 	
@@ -154,7 +154,7 @@ app.controller('AppController', function($rootScope, $scope, $state, $http, $ion
 		
 	$scope.showProfile = function() {
 		
-		if($rootScope.user.session_id){
+		if($rootScope.user.email && $rootScope.user.password){
 			
 			$ionicSideMenuDelegate.toggleRight();
 			
@@ -236,7 +236,7 @@ app.controller('SplashController', function($scope,$rootScope,$state, $http, $io
 						});
 				}else{
 				
-					$state.go('login');
+					$state.go('events');
 				}
 				$ionicLoading.hide();
 		
@@ -252,9 +252,13 @@ app.controller('SignupController', function($scope,$rootScope, $state, $http, $i
 
 	  $scope.signup = {};
 	  
+	  $scope.goBack = function() {
+		$state.go('events');
+	  };
+	  
 	  $scope.update = function(signup) {
 		
-		console.log($scope.signup);
+		//console.log($scope.signup);
 		
 		var error = false;
 		var message = "";
@@ -306,30 +310,18 @@ app.controller('SignupController', function($scope,$rootScope, $state, $http, $i
 				}
 			}).success(function(data, status, header, config) {
 				
-				if(data.error == "0")
+				if(data == "1")
 				{
 					window.localStorage.setItem("email",$scope.signup.confirm_email);
 					window.localStorage.setItem("password", $scope.signup.confirm_password);
 					$rootScope.user.email = $scope.signup.confirm_email;
 					$rootScope.user.password = $scope.signup.confirm_password;			
 					$state.go('login');
-				}else if(data.error == "1"){
+				}else{
 				
 					var alertPopup = $ionicPopup.alert({
 						title: 'Signup Error',
-						template: data.message
-					});
-						
-					 $scope.signup.email="";
-					 $scope.signup.confirm_email="";
-					 $scope.signup.password="";
-					 $scope.signup.confirm_password="";
-					 
-				}else if(data.error == "2"){
-				
-					var alertPopup = $ionicPopup.alert({
-						title: 'Signup Error',
-						template: data.message
+						template: "Email already exist"
 					});
 						
 					 $scope.signup.email="";
@@ -582,6 +574,7 @@ app.controller('EventController', function($scope,$rootScope, $state, $http, $io
 	$scope.events = {};
 	$scope.categories = {};
 	$rootScope.event = {};//Empty the data
+   
 		
 	
 	$ionicLoading.show({
@@ -599,10 +592,13 @@ app.controller('EventController', function($scope,$rootScope, $state, $http, $io
 		
 		$ionicLoading.hide();
 		$scope.events = data.events;	
-		$scope.categories = data.categories;		
+		$scope.categories = data.categories;	
+        $rootScope.user.session_id = data.session_id;
 		
 		$rootScope.events = $scope.events;//Assign to root scope
 		$rootScope.categories = $scope.categories;//Assign to root scope
+        
+        
 		
 		
 	}).error(function(data, status, header, config) {

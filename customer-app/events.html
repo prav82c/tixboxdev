@@ -9,7 +9,7 @@
   </div>
 </ion-header-bar>
 <ion-view title="Event">
-  <ion-content class="praveen">
+  <ion-content scroll="true">
     <div class="eveListItem" ng-repeat="data in events | filter:catfilter">
       <div class="eveImage"> <a href="#/event/{{data.Event.event_id}}"><img src="{{data.Event.image}}"></a> </div>
       <div class="row eveDets">
