@@ -84,7 +84,8 @@ top: 50px;
 	-moz-border-radius: 5px 5px 5px 5px;
 	-webkit-border-radius: 5px 5px 5px 5px; */
 	margin:10px;
-	border-bottom:2px solid #1a1a1a; 
+	/* margin-bottom:20px;
+	border-bottom:2px solid #1a1a1a;  */
 }
 .eveListItem:last-child {
 	margin-bottom:0px;
@@ -96,7 +97,7 @@ top: 50px;
 
 .bar .title {
 	left:30px!important;
-	line-height:50px;
+	/* line-height:50px; */
 	font-size:20px;
 	font-weight:normal;
 	text-transform:uppercase;
@@ -464,4 +465,25 @@ overflow: scroll !important;
 
 .red {
 	color:#C13B39;
+}
+
+.button.button-positive, .button.button-positive:hover {
+border-color: #ffffff;
+background-color: #ffffff;
+color: #111111;
+}
+
+.popup-head {
+padding: 15px 10px;
+border-bottom: 1px solid #dc5856;
+text-align: center;
+text-transform:uppercase;
+}
+
+.popup-container {
+	background: rgba(0, 0, 0, 0.8);
+}
+
+.popup-body {
+text-align: center;
 }

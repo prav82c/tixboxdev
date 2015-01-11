@@ -12,18 +12,16 @@
   <ion-content scroll="true">
     <div class="eveListItem" ng-repeat="data in events | filter:catfilter">
       <div class="eveImage"> <a href="#/event/{{data.Event.event_id}}"><img src="{{data.Event.image}}"></a> </div>
-      <div class="row eveDets">
-        <div class="col col-80">
+      <div class="eveDets">
+        <div class="padtty">
           <a href="#/event/{{data.Event.event_id}}"><h2 class="home_eventTitle">{{data.Event.title}}</h2>
-          <table width="100%" border="0" cellpadding="0" cellspacing="0">
-            <tr>
-              <td width="170" align="left"><i class="icon ion-calendar red zico"></i> <span style="color:#777;">{{data.Event.date}}</span></td>
-              <td align="left"><i class="icon ion-ios7-location red zico"></i> <span style="color:#777;">{{data.Event.address.city_id}}</span></td>
-            </tr>
-          </table>
+          <!--<div><i class="icon ion-calendar red zico"></i> <span style="color:#777;">{{data.Event.date}}</span></div>
+          <div><i class="icon ion-ios7-location red zico"></i> <span style="color:#777;">{{data.Event.address.city_id}}</span></div>-->
+          <div><span class="fwi11"><!--<i class="icon ion-calendar red zico"></i>--></span> <span style="color:#777;">{{data.Event.date}}</span></div>
+          <div><span class="fwi11"><!--<i class="icon ion-ios7-location red zico"></i>--></span> <span style="color:#777;">{{data.Event.address.city_id}}</span></div>
           </a>
         </div>
-        <div class="col"><a class="button button-block button-assertive listbuybut" href="#/event/{{data.Event.event_id}}/datetime">BUY</a></div>
+        <div class=""><a class="button button-full button-assertive listbuybut" href="#/event/{{data.Event.event_id}}/datetime">BUY TICKETS</a></div>
       </div>
     </div>
   </ion-content>
