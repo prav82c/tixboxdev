@@ -125,8 +125,9 @@ app.config(function($stateProvider, $urlRouterProvider) {
 	
 });
 
-app.controller('AppController', function($rootScope, $scope, $state, $http, $ionicPopup, $rootScope, $ionicViewService, $ionicNavBarDelegate,$ionicSideMenuDelegate) {
-
+app.controller('AppController', function($rootScope, $scope, $state, $http, $ionicPopup, $rootScope, $ionicViewService, $ionicNavBarDelegate,$ionicSideMenuDelegate,$ionicLoading) {
+	
+	
 
 	var email = window.localStorage.getItem("email");
     var password = window.localStorage.getItem("password");
@@ -153,6 +154,18 @@ app.controller('AppController', function($rootScope, $scope, $state, $http, $ion
 	
 		
 	$scope.showProfile = function() {
+	
+		var email = window.localStorage.getItem("email");
+		var password = window.localStorage.getItem("password");
+		
+		if(email && password)
+		{
+			$rootScope.user.email = email;
+			$rootScope.user.password = password;
+			$rootScope.login(email,password);	
+			return false;
+		}
+	
 		
 		if($rootScope.user.email && $rootScope.user.password){
 			
@@ -161,7 +174,7 @@ app.controller('AppController', function($rootScope, $scope, $state, $http, $ion
 		}else {
 		
 			$state.go('login');
-			//$ionicSideMenuDelegate.toggleRight();
+			
 		}
 	};
 	
@@ -186,6 +199,45 @@ app.controller('AppController', function($rootScope, $scope, $state, $http, $ion
 	
 		$state.go('login');
 	};
+	
+	
+	
+	$rootScope.login = function(email,password){
+			
+			$ionicLoading.show({
+			template: '<i class="icon ion-android-timer"></i><br/>LOADING'
+			});
+		
+			$http({
+				method: 'jsonp',
+				url: basepath + 'applogin?callback=JSON_CALLBACK',
+				params: {"email": email, "password": password}
+			}).success(function(data, status, header, config) {
+			
+				$ionicLoading.hide();
+				if (data.error == 0)
+				{
+					
+					$state.go('login');
+					
+				} else {
+
+					//Local Storage
+					window.localStorage.setItem("email", $scope.user.email);
+					window.localStorage.setItem("password", $scope.user.password);
+					
+					$rootScope.login = data;
+					$rootScope.user.session_id = $scope.login.session_id;
+					console.log("Autologin:"+$rootScope.user.session_id);					
+					$ionicSideMenuDelegate.toggleRight();
+					
+				}
+
+			}).error(function(data, status, header, config) {
+			
+			});
+						
+	}
 	
 });
 
@@ -234,6 +286,9 @@ app.controller('SplashController', function($scope,$rootScope,$state, $http, $io
 								template: 'Please check data connection'
 							});
 						});
+						
+						
+						
 				}else{
 				
 					$state.go('events');

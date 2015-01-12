@@ -14,6 +14,7 @@
 <script>
 document.addEventListener("deviceready",function() {
    window.addEventListener("message", function(event) {
+		console.log(event.data+"Praveen");
         if (event.data == "redirect_wallet") {
 		
 	        document.location.href= "#/wallet";
@@ -26,6 +27,22 @@ document.addEventListener("deviceready",function() {
 		
 			document.location.href= "#/tickets";
 			
+		}else if(typeof event.data.email != "undefined" && typeof event.data.password != "undefined"){
+		
+			window.localStorage.setItem("email", event.data.email);
+			window.localStorage.setItem("password", event.data.password);
+			
+			console.log(event.data.email);
+			console.log(event.data.password);
+			
+			app.run(function ($rootScope) {
+				$rootScope.login(event.data.email,event.data.password);
+			});
+			
+			angular.module('myApp').run(function($rootScope, event.data.email,event.data.password) {
+				$rootScope.login(event.data.email,event.data.password);
+			});
+			
 		}else{
 		
 			document.location.href= "#/events";
@@ -37,7 +54,7 @@ document.addEventListener("deviceready",function() {
 
 </script>
 </head>
-<body id="tixboxapp" ng-controller="AppController">
+<body id="tixboxapp" ng-controller="AppController" id="AppController">
 
 
 <ion-side-menus>	
@@ -56,7 +73,7 @@ document.addEventListener("deviceready",function() {
 	</ion-side-menu>
 	
 	<ion-side-menu side="right">
-		<ion-header-bar class="bar-assertive"><h1 class="title nopos">Ponnuchamy</h1></ion-header-bar>		
+		<ion-header-bar class="bar-assertive"><h1 class="title nopos">{{login.user.first_name}} {{login.user.last_name}}</h1></ion-header-bar>		
 		<ion-content>
 			<ion-list>
 				<a href="#/wallet" class="item uc" menu-close>My Wallet</a>
