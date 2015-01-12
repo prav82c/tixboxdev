@@ -15,13 +15,9 @@
         <ion-slide ng-repeat="image in image.large">
           <div class="box"><img src="{{image}}" class="eveimg"></div>
         </ion-slide>
-      </ion-slide-box>
+      </ion-slide-box><a class="button button-full button-assertive nm" href="#/event/{{data.event.event_id}}/datetime">BUY TICKETS</a>
       <div class="evedets padten clearfix">
-        <div class="row np">
-          <div class="col col-80 np"><a class="button button-block button-assertive nm" href="#/event/{{data.event.event_id}}/datetime">BUY TICKETS</a></div>
-          <div class="col np" style="margin-left:10px;"><a class="button button-block button-light nm" style="height:45px;" href=""><i class="icon ion-heart"></i></a></div>
-        </div>
-        <hr class="light" />
+        
         <div class="well-bg1 mtten">
           <h1 class="eventTitle">{{data.event.title}}</h1>
           <p ng-bind-html="data.event.short_description"></p>
